@@ -1,8 +1,8 @@
 <template>
-  <div id="app" class="site">
-    <Header />
-    <router-view />
-  </div>
+	<div id="app" class="site">
+		<Header />
+		<router-view />
+	</div>
 </template>
 
 <script>
