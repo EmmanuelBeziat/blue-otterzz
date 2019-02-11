@@ -5,7 +5,7 @@ const domain = ''
 export const api = {
 	root: domain,
 	routes: {
-		projects: 'api/projects',
+		projects: 'api/songs',
 	}
 }
 
@@ -14,4 +14,9 @@ export const app = {
 	version: env.version,
 	description: env.description,
 	author: env.author,
+}
+
+export const spotify = {
+	clientID: '854fec3ebf89495381d0f08b0fe1c559',
+	clientSecret: '2e2d6166a3564e0ca8c94546f6cdbede'
 }

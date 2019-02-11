@@ -1,11 +1,11 @@
 <template>
-	<div class="project-view">
+	<div class="song-view">
 
 	</div>
 </template>
 
 <script>
 export default {
-	name: 'ProjectView'
+	name: 'SongView'
 }
 </script>

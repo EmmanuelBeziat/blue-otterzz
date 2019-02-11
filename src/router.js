@@ -1,17 +1,29 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
+import Song from './views/Songs/View'
+import Songs from './views/Songs/List'
 
 Vue.use(Router)
 
 export default new Router({
 	mode: 'history',
 	base: process.env.BASE_URL,
+	linkActiveClass: 'active',
 	routes: [
 		{
 			path: '/',
 			name: 'home',
-			component: Home
+			redirect: { name: 'songs' }
+		},
+		{
+			path: '/songs',
+			name: 'songs',
+			component: Songs
+		},
+		{
+			path: '/songs/:slug',
+			name: 'song',
+			component: Song
 		},
 		{
 			path: '/about',

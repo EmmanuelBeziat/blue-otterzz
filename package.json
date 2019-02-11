@@ -1,8 +1,8 @@
 {
-	"name": "project-manager",
+	"name": "blue-ottersr",
 	"version": "0.1.0",
 	"private": true,
-	"description": "Just a tiny webapp to manage projects with files and stuff.",
+	"description": "Just a tiny webapp to manage songs with files and stuff.",
 	"author": "Emmanuel Béziat <contact@emmanuelbeziat.com>",
 	"repository": "https://github.com/EmmanuelBeziat/project-manager.git",
 	"scripts": {
@@ -13,8 +13,10 @@
 	},
 	"dependencies": {
 		"axios": "^0.18.0",
+		"date-fns": "^2.0.0-alpha.27",
 		"iview": "^3.2.2",
 		"register-service-worker": "^1.5.2",
+		"spotify-web-api-node": "^4.0.0",
 		"vue": "^2.5.22",
 		"vue-axios": "^2.1.4",
 		"vue-router": "^3.0.1",

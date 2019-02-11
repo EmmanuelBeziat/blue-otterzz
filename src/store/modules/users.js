@@ -8,6 +8,7 @@ const state = {
 
 // Getters
 const getters = {
+	list: state => state.users,
 	getUser: state => slug => {
 		return state.users.find(user => user.slug === slug)
 	},
