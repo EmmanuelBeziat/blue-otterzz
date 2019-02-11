@@ -1,5 +1,5 @@
 <template>
-	<audio controls :src="audioSource" />
+	<audio controls :src="audioSource" preload="metadata" />
 </template>
 
 <script>
@@ -17,7 +17,7 @@ export default {
 
 <style lang="stylus" scoped>
 audio
-	height 32px
+	height 28px
 	display block
 </style>
 

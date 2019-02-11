@@ -5,11 +5,23 @@
 		<main class="main">
 			<div class="dashboard">
 				<Table class="songs" :loading="loading" :columns="columns" :data="songs">
-					<template slot-scope="{ row }" slot="registered">{{ row.registered }}</template>
+					<template slot-scope="{ row }" slot="artist"><strong>{{ row.artist }}</strong></template>
+					<template slot-scope="{ row }" slot="registered">{{ row.registered | date }}</template>
 					<template slot-scope="{ row }" slot="url"><Player :source="row.url" /></template>
+					<template slot-scope="{ row }" slot="files">
+						<Tooltip v-if="row.files.sheet" content="Tablature" placement="top">
+							<a :href="row.files.sheet"><Icon size="24" type="md-musical-notes" /></a>
+						</Tooltip>
+						<Tooltip v-if="row.files.lyrics" content="Paroles" placement="top">
+							<a :href="row.files.lyrics"><Icon size="24" type="md-microphone" /></a>
+						</Tooltip>
+						<Tooltip v-if="row.files.backtrack" content="Backtrack" placement="top">
+							<a :href="row.files.backtrack"><Icon size="24" type="md-laptop" /></a>
+						</Tooltip>
+					</template>
 					<template slot-scope="{ row }" slot="action">
 						<Button icon="md-eye" type="primary" style="margin-right: 5px" @click="$router.push({ name: 'song', params: { slug: row.slug }})" />
-						<Button icon="md-trash" type="error" @click="remove(row._id)" />
+						<!-- <Button icon="md-trash" type="error" @click="remove(row._id)" /> -->
 					</template>
 				</Table>
 			</div>
@@ -23,7 +35,6 @@ import Sidebar from '@/components/ui/Sidebar'
 import Player from '@/components/player/Player'
 
 import Spotify from 'spotify-web-api-node'
-import { format, distanceInWords } from 'date-fns'
 
 export default {
 	name: 'Songs',
@@ -34,12 +45,13 @@ export default {
 			loading: true,
 			columns: [
 				// { type: 'selection', width: 60, align: 'center' },
-				{ title: 'Artists', key: 'artist', sortable: true },
+				{ title: 'Artists', slot: 'artist', sortable: true },
 				{ title: 'Titre', key: 'name', sortable: true },
 				{ title: 'Proposé par', key: 'submited', sortable: true	},
 				{ title: 'Proposé le', slot: 'registered', sortable: true },
-				{ title: 'Audio', slot: 'url', width: 350 },
-				{ title: 'Action', width: 150, align: 'center', slot: 'action' }
+				{ title: 'Audio', slot: 'url', width: 320 },
+				{ title: 'Fichiers', slot: 'files', align: 'center', width: 140 },
+				{ title: 'Voir', width: 80, align: 'center', slot: 'action' }
 			]
 		}
 	},
