@@ -6,17 +6,18 @@
 			<div class="dashboard">
 				<Table class="songs" :loading="loading" :columns="columns" :data="songs">
 					<template slot-scope="{ row }" slot="artist"><strong>{{ row.artist }}</strong></template>
+					<template slot-scope="{ row }" slot="rates"><Rate :value="rate(row.rates)" custom-icon="icon-pick" disabled /></template>
 					<template slot-scope="{ row }" slot="registered">{{ row.registered | date }}</template>
 					<template slot-scope="{ row }" slot="url"><Player :source="row.url" /></template>
 					<template slot-scope="{ row }" slot="files">
 						<Tooltip v-if="row.files.sheet" content="Tablature" placement="top">
-							<a :href="row.files.sheet"><Icon size="24" type="md-musical-notes" /></a>
+							<a class="file-download" :href="row.files.sheet"><Icon size="24" custom="icon-pick" /></a>
 						</Tooltip>
 						<Tooltip v-if="row.files.lyrics" content="Paroles" placement="top">
-							<a :href="row.files.lyrics"><Icon size="24" type="md-microphone" /></a>
+							<a class="file-download" :href="row.files.lyrics"><Icon size="24" type="md-microphone" /></a>
 						</Tooltip>
 						<Tooltip v-if="row.files.backtrack" content="Backtrack" placement="top">
-							<a :href="row.files.backtrack"><Icon size="24" type="md-laptop" /></a>
+							<a class="file-download" :href="row.files.backtrack"><Icon size="24" type="md-laptop" /></a>
 						</Tooltip>
 					</template>
 					<template slot-scope="{ row }" slot="action">
@@ -45,12 +46,13 @@ export default {
 			loading: true,
 			columns: [
 				// { type: 'selection', width: 60, align: 'center' },
-				{ title: 'Artists', slot: 'artist', sortable: true },
+				{ title: 'Artiste', slot: 'artist', sortable: true },
 				{ title: 'Titre', key: 'name', sortable: true },
+				{ title: 'Note', slot: 'rates', sortable: true },
 				{ title: 'Proposé par', key: 'submited', sortable: true	},
 				{ title: 'Proposé le', slot: 'registered', sortable: true },
 				{ title: 'Audio', slot: 'url', width: 320 },
-				{ title: 'Fichiers', slot: 'files', align: 'center', width: 140 },
+				{ title: 'Fichiers', slot: 'files', align: 'center', width: 160 },
 				{ title: 'Voir', width: 80, align: 'center', slot: 'action' }
 			]
 		}
@@ -60,7 +62,7 @@ export default {
 		songs () {
 			this.loading = false
 			return this.$store.getters['songs/list']
-		}
+		},
 	},
 
 	mounted () {
@@ -77,6 +79,10 @@ export default {
 			return this.$store.getters['users/getUser'](user)
 		},
 
+		rate (values) {
+			return Math.round(values.reduce((accumulator, value) => accumulator + value, 0) / values.length)
+		},
+
 		view (slug) {
 			console.log('view: ' + slug)
 		},
@@ -91,12 +97,6 @@ export default {
 				clientSecret: spotify.clientSecret,
 				redirectUri:'http://localhost:3040/'
 			})
-
-			app.getTrack('3Qm86XLflmIXVm1wcwkgDK')
-				.then(ret => {
-					console.log(ret)
-				})
-				.catch(err => console.log(err))
 		}
 	}
 }
@@ -105,4 +105,14 @@ export default {
 <style lang="stylus" scoped>
 .dashboard
 	padding 1rem
+
+.file-download
+	padding 0 .35em
 </style>
+
+<style lang="stylus">
+.ivu-rate-star-chart.ivu-rate-star-full .ivu-rate-star-first
+.ivu-rate-star-chart.ivu-rate-star-full .ivu-rate-star-second
+	color #2d8cf0 !important
+</style>
+

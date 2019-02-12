@@ -20,6 +20,8 @@ export default {
 
 
 <style lang="stylus">
+@require '~@/assets/fonts/music/music.styl'
+
 :root
 	--color-white #fff
 	--color-light-grey rgba(255, 255, 255, .7)

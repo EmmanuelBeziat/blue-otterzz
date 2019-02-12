@@ -1,0 +1,14 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>Copyright (C) 2019 by original authors @ fontello.com</metadata>
+<defs>
+<font id="music" horiz-adv-x="1000" >
+<font-face font-family="music" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<missing-glyph horiz-adv-x="1000" />
+<glyph glyph-name="pick" unicode="&#xe800;" d="M429 850c-286 0-429-143-429-286 0-285 286-714 429-714s428 429 428 714c0 143-143 286-428 286z" horiz-adv-x="857" />
+
+<glyph glyph-name="gkey" unicode="&#xe801;" d="M86-47c-6-32 28-100 96-102 83-3 136 60 111 163l-123 568c-15 68-4 105 4 126 21 59 73 83 86 64 7-11 24-60-25-150-39-69-220-160-234-324-11-142 137-247 266-206 85 28 129 157 77 224-139 176-363-94-146-167-24 18-40 33-43 50-29 170 227 126 158-36-29-66-144-80-209-20-54 50-79 145-18 214 83 93 180 177 206 304 31 151-69 268-132 120-22-50-29-100-9-195l123-581c9-41 3-98-36-125-19-13-87-22-104 9m-49 59a58 58 0 1 0 57-60 58 58 0 0 0-57 60z" horiz-adv-x="367" />
+</font>
+</defs>
+</svg>
