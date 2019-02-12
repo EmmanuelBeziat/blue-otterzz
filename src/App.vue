@@ -25,6 +25,7 @@ export default {
 :root
 	--color-white #fff
 	--color-light-grey rgba(255, 255, 255, .7)
+	--color-grey rgba(0, 0, 0, .15)
 
 .site
 	min-height 100vh

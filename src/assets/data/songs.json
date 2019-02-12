@@ -130,7 +130,7 @@
 		"files": {
 			"root": "machin",
 			"sheet": "tab.gp5",
-			"backtrack": "backtrack.mp3",
+			"backtrack": "",
 			"lyrics": "lyrics.txt"
 		}
 	},
@@ -156,7 +156,7 @@
 		"url": "1taz71WL8grTxW6JLiL1i8",
 		"files": {
 			"root": "machin",
-			"sheet": "tab.gp5",
+			"sheet": "",
 			"backtrack": "backtrack.mp3",
 			"lyrics": "lyrics.txt"
 		}

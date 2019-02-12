@@ -4,20 +4,24 @@
 
 		<main class="main">
 			<div class="dashboard">
-				<Table class="songs" :loading="loading" :columns="columns" :data="songs">
+				<Table class="songs" :columns="columns" :data="songs">
 					<template slot-scope="{ row }" slot="artist"><strong>{{ row.artist }}</strong></template>
-					<template slot-scope="{ row }" slot="rates"><Rate :value="rate(row.rates)" custom-icon="icon-pick" disabled /></template>
+					<template slot-scope="{ row }" slot="rates"><Rate :value="getSongRate(row.rates)" custom-icon="icon-pick" disabled /></template>
+					<template slot-scope="{ row }" slot="submited">{{ getUserName(row.submited) }}</template>
 					<template slot-scope="{ row }" slot="registered">{{ row.registered | date }}</template>
 					<template slot-scope="{ row }" slot="url"><Player :source="row.url" /></template>
 					<template slot-scope="{ row }" slot="files">
-						<Tooltip v-if="row.files.sheet" content="Tablature" placement="top">
-							<a class="file-download" :href="row.files.sheet"><Icon size="24" custom="icon-pick" /></a>
+						<Tooltip content="Tablature" placement="top">
+							<a v-if="row.files.sheet" class="file-download" :href="row.files.sheet"><Icon size="24" custom="icon-pick" /></a>
+							<span v-else class="file-download"><Icon size="24" custom="icon-pick" /></span>
 						</Tooltip>
-						<Tooltip v-if="row.files.lyrics" content="Paroles" placement="top">
-							<a class="file-download" :href="row.files.lyrics"><Icon size="24" type="md-microphone" /></a>
+						<Tooltip content="Paroles" placement="top">
+							<a v-if="row.files.lyrics" class="file-download" :href="row.files.lyrics"><Icon size="24" type="md-microphone" /></a>
+							<span v-else class="file-download"><Icon size="24" type="md-microphone" /></span>
 						</Tooltip>
-						<Tooltip v-if="row.files.backtrack" content="Backtrack" placement="top">
-							<a class="file-download" :href="row.files.backtrack"><Icon size="24" type="md-laptop" /></a>
+						<Tooltip content="Backtrack" placement="top">
+							<a v-if="row.files.backtrack" class="file-download" :href="row.files.backtrack"><Icon size="24" type="md-laptop" /></a>
+							<span v-else class="file-download"><Icon size="24" type="md-laptop" /></span>
 						</Tooltip>
 					</template>
 					<template slot-scope="{ row }" slot="action">
@@ -43,13 +47,12 @@ export default {
 	data () {
 		return {
 			filters: null,
-			loading: true,
 			columns: [
 				// { type: 'selection', width: 60, align: 'center' },
 				{ title: 'Artiste', slot: 'artist', sortable: true },
 				{ title: 'Titre', key: 'name', sortable: true },
 				{ title: 'Note', slot: 'rates', sortable: true },
-				{ title: 'Proposé par', key: 'submited', sortable: true	},
+				{ title: 'Proposé par', slot: 'submited', sortable: true	},
 				{ title: 'Proposé le', slot: 'registered', sortable: true },
 				{ title: 'Audio', slot: 'url', width: 320 },
 				{ title: 'Fichiers', slot: 'files', align: 'center', width: 160 },
@@ -60,7 +63,6 @@ export default {
 
 	computed: {
 		songs () {
-			this.loading = false
 			return this.$store.getters['songs/list']
 		},
 	},
@@ -75,12 +77,13 @@ export default {
 	},
 
 	methods: {
-		submitedBy (user) {
-			return this.$store.getters['users/getUser'](user)
+		getSongRate (values) {
+			return Math.round(values.reduce((accumulator, value) => accumulator + value, 0) / values.length)
 		},
 
-		rate (values) {
-			return Math.round(values.reduce((accumulator, value) => accumulator + value, 0) / values.length)
+		getUserName (slug) {
+			const user = this.$store.getters['users/getUser'](slug)
+			return user.name
 		},
 
 		view (slug) {
@@ -108,11 +111,18 @@ export default {
 
 .file-download
 	padding 0 .35em
+
+	span&
+		color var(--color-grey)
 </style>
 
 <style lang="stylus">
 .ivu-rate-star-chart.ivu-rate-star-full .ivu-rate-star-first
 .ivu-rate-star-chart.ivu-rate-star-full .ivu-rate-star-second
 	color #2d8cf0 !important
+
+.ivu-rate-star-chart.ivu-rate-star-zero .ivu-rate-star-first
+.ivu-rate-star-chart.ivu-rate-star-zero .ivu-rate-star-second
+	color var(--color-grey) !important
 </style>
 
