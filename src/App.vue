@@ -2,7 +2,11 @@
 	<div id="app" class="site">
 		<Header />
 
-		<router-view />
+		<div class="content">
+			<main class="main">
+				<router-view />
+			</main>
+		</div>
 
 		<BackTop />
 	</div>
@@ -32,7 +36,8 @@ export default {
 	display grid
 	grid-template-rows auto 1fr
 
-.content
-	display grid
-	grid-template-columns 16rem auto
+.main
+	padding 1rem
+
+@require '~@/assets/styles/helpers.styl'
 </style>

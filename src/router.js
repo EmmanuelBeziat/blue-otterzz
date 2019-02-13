@@ -2,6 +2,10 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Song from './views/Songs/View'
 import Songs from './views/Songs/List'
+import Live from './views/Lives/View'
+import Lives from './views/Lives/List'
+import User from './views/Users/View'
+import Users from './views/Users/List'
 
 Vue.use(Router)
 
@@ -24,6 +28,26 @@ export default new Router({
 			path: '/songs/:slug',
 			name: 'song',
 			component: Song
+		},
+		{
+			path: '/lives',
+			name: 'lives',
+			component: Lives
+		},
+		{
+			path: '/lives/:slug',
+			name: 'live',
+			component: Live
+		},
+		{
+			path: '/users',
+			name: 'users',
+			component: Users
+		},
+		{
+			path: '/users/:slug',
+			name: 'user',
+			component: User
 		},
 		{
 			path: '/about',

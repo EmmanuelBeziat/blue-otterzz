@@ -1,17 +1,17 @@
 [
 	{
 		"_id": "5c614fc5a55048696c139560",
-		"slug": "tempor-pariatur-fugiat-aliquip",
+		"slug": "bon-jovi-you-give-love-a-bad-name",
 		"isActive": true,
-		"rates": [
-			4,
-			4,
-			4,
-			3
+		"scores": [
+			{ "user": "emmanuel", "note": 3 },
+			{ "user": "sylvain", "note": 4 },
+			{ "user": "valentin", "note": 3 },
+			{ "user": "wendy", "note": 2 }
 		],
-		"submited": "emmanuel",
-		"name": "pariatur fugiat aliquip",
-		"artist": "tempor",
+		"submited": "valentin",
+		"title": "You Give Love a Bad Name",
+		"artist": "Bon Jovi",
 		"registered": "2015-01-23T08:15:43.655Z",
 		"tags": [
 			"eu",
@@ -28,17 +28,17 @@
 	},
 	{
 		"_id": "5c614fc5c0c4ceba725814c9",
-		"slug": "lorem-voluptate-laboris-excepteur",
+		"slug": "speedy-ortiz-no-below",
 		"isActive": true,
-		"rates": [
-			1,
-			1,
-			4,
-			3
+		"scores": [
+			{ "user": "emmanuel", "note": 2 },
+			{ "user": "sylvain", "note": 2 },
+			{ "user": "valentin", "note": 2 },
+			{ "user": "wendy", "note": 4 }
 		],
-		"submited": "sylvain",
-		"name": "voluptate laboris excepteur",
-		"artist": "lorem",
+		"submited": "wendy",
+		"title": "No Below",
+		"artist": "Speedy Ortiz",
 		"registered": "2014-03-17T02:49:32.655Z",
 		"tags": [
 			"deserunt",
@@ -55,17 +55,17 @@
 	},
 	{
 		"_id": "5c614fc54ac10fede88cee52",
-		"slug": "aliquip-aliqua-fugiat-sint",
+		"slug": "the-killers-somebody-told-me",
 		"isActive": true,
-		"rates": [
-			1,
-			3,
-			3,
-			3
+		"scores": [
+			{ "user": "emmanuel", "note": 5 },
+			{ "user": "sylvain", "note": 5 },
+			{ "user": "valentin", "note": 5 },
+			{ "user": "wendy", "note": 5 }
 		],
 		"submited": "wendy",
-		"name": "aliqua fugiat sint",
-		"artist": "aliquip",
+		"title": "Somebody Told Me",
+		"artist": "The Killers",
 		"registered": "2015-06-19T11:00:04.655Z",
 		"tags": [
 			"nisi",
@@ -82,17 +82,17 @@
 	},
 	{
 		"_id": "5c614fc5ef3f2763a35d5462",
-		"slug": "adipisicing-et-nulla-culpa",
+		"slug": "italo-brothers-stamp-on-the-ground",
 		"isActive": true,
-		"rates": [
-			2,
-			4,
-			4,
-			3
+		"scores": [
+			{ "user": "emmanuel", "note": 5 },
+			{ "user": "sylvain", "note": 5 },
+			{ "user": "valentin", "note": 4 },
+			{ "user": "wendy", "note": 5 }
 		],
-		"submited": "valentin",
-		"name": "et nulla culpa",
-		"artist": "adipisicing",
+		"submited": "emmanuel",
+		"title": "Stamp on the Ground",
+		"artist": "Italo Brothers",
 		"registered": "2015-11-07T12:23:24.655Z",
 		"tags": [
 			"tempor",
@@ -110,16 +110,16 @@
 	{
 		"_id": "5c614fc58ab0aa3fc9488f6e",
 		"isActive": true,
-		"rates": [
-			1,
-			3,
-			4,
-			4
+		"scores": [
+			{ "user": "emmanuel", "note": 3 },
+			{ "user": "sylvain", "note": 5 },
+			{ "user": "valentin", "note": 3 },
+			{ "user": "wendy", "note": 4 }
 		],
-		"slug": "sit-occaecat-aute-non",
-		"submited": "wendy",
-		"name": "occaecat aute non",
-		"artist": "sit",
+		"slug": "no-doubt-dont-speak",
+		"submited": "sylvain",
+		"title": "Don’t Speak",
+		"artist": "No Doubt",
 		"registered": "2017-02-10T01:51:32.655Z",
 		"tags": [
 			"do",
@@ -136,17 +136,17 @@
 	},
 	{
 		"_id": "5c614fc5e605419b090bdc9b",
-		"slug": "est-nostrud-eiusmod-dolor",
 		"isActive": true,
-		"rates": [
-			2,
-			2,
-			2,
-			3
+		"scores": [
+			{ "user": "emmanuel", "note": 4 },
+			{ "user": "sylvain", "note": 4 },
+			{ "user": "valentin", "note": 3 },
+			{ "user": "wendy", "note": 4 }
 		],
-		"submited": "emmanuel",
-		"name": "nostrud eiusmod dolor",
-		"artist": "est",
+		"slug": "on-ok-rock-liar",
+		"submited": "wendy",
+		"title": "Liar",
+		"artist": "One Ok Rock",
 		"registered": "2014-05-29T03:29:42.655Z",
 		"tags": [
 			"irure",

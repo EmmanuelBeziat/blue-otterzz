@@ -1,7 +1,8 @@
 <template>
 	<div class="dashboard">
 		<Table class="songs" :columns="columns" :data="songs">
-			<template slot-scope="{ row }" slot="scores"><Rate allow-half :value="getScore(row.scores)" custom-icon="icon-pick" disabled /></template>
+			<template slot-scope="{ row }" slot="artist"><strong>{{ row.artist }}</strong></template>
+			<template slot-scope="{ row }" slot="rates"><Rate allow-half :value="getSongRate(row.rates)" custom-icon="icon-pick" disabled /></template>
 			<template slot-scope="{ row }" slot="submited">{{ getUserName(row.submited) }}</template>
 			<template slot-scope="{ row }" slot="registered">{{ row.registered | date }}</template>
 			<template slot-scope="{ row }" slot="url"><Player :source="row.url" /></template>
@@ -34,18 +35,18 @@ import Player from '@/components/player/Player'
 import Spotify from 'spotify-web-api-node'
 
 export default {
-	name: 'Songs',
+	name: 'Users',
 
 	data () {
 		return {
 			filters: null,
 			columns: [
 				// { type: 'selection', width: 60, align: 'center' },
-				{ title: 'Artiste', key: 'artist', sortable: true },
+				{ title: 'Artiste', slot: 'artist', sortable: true },
 				{ title: 'Titre', key: 'title', sortable: true },
-				{ title: 'Note', key: 'scores', slot: 'scores', sortable: true },
-				{ title: 'Proposé par', key: 'submited', slot: 'submited', sortable: true	},
-				{ title: 'Proposé le', key: 'registered', slot: 'registered', sortable: true },
+				{ title: 'Note', slot: 'rates', sortable: true },
+				{ title: 'Proposé par', slot: 'submited', sortable: true	},
+				{ title: 'Proposé le', slot: 'registered', sortable: true },
 				{ title: 'Audio', slot: 'url', width: 320 },
 				{ title: 'Fichiers', slot: 'files', align: 'center', width: 160 },
 				{ title: 'Voir', width: 80, align: 'center', slot: 'action' }
@@ -68,7 +69,7 @@ export default {
 	},
 
 	methods: {
-		getScore (values) {
+		getSongRate (values) {
 			return values.reduce((accumulator, value) => accumulator + value.note, 0) / values.length
 		},
 
