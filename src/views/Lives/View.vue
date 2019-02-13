@@ -1,7 +1,8 @@
 <template>
-	<div class="song-view">
-		<h1>{{ song.artist }} — {{ song.title }}</h1>
-		Posté le {{ song.registered | date }} par <router-link :to="{ name: 'user', params: song.submited.name }">{{ getUserName(song.submited) }}</router-link>
+	<div class="live-view">
+		<h1>{{ live.name }}</h1>
+		<h2>{{ live.date | date('full') }}, {{ live.place }}</h2>
+		{{ live }}
 	</div>
 </template>
 
@@ -10,17 +11,9 @@ export default {
 	name: 'Live',
 
 	computed: {
-		song () {
-			return this.$store.getters['songs/getSong'](this.$route.params.slug)
+		live () {
+			return this.$store.getters['lives/getLive'](this.$route.params.slug)
 		}
 	},
-
-	methods: {
-		getUserName (slug) {
-
-			const user = this.$store.getters['users/getUser'](slug)
-			return user.name
-		},
-	}
 }
 </script>

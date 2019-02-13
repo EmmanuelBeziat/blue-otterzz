@@ -3,7 +3,7 @@
 		<Table class="lives" :columns="columns" :data="lives">
 			<template slot-scope="{ row }" slot="date">{{ row.date | date('full') }} — {{ row.date | date }}</template>
 			<template slot-scope="{ row }" slot="action">
-				<Button icon="md-eye" type="primary" style="margin-right: 5px" @click="$router.push({ name: 'song', params: { slug: row.slug }})" />
+				<Button icon="md-eye" type="primary" style="margin-right: 5px" @click="$router.push({ name: 'live', params: { slug: row.slug }})" />
 				<!-- <Button icon="md-trash" type="error" @click="remove(row._id)" /> -->
 			</template>
 		</Table>
@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import { spotify } from '@/config'
 import { isAfter, isBefore } from 'date-fns'
 
 export default {
@@ -50,16 +49,3 @@ export default {
 	}
 }
 </script>
-
-<style lang="stylus" scoped>
-.file-download
-	padding 0 .35em
-
-	span&
-		color var(--color-grey)
-</style>
-
-<style lang="stylus">
-@require '~@/assets/styles/iview-override.styl'
-</style>
-

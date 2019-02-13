@@ -1,7 +1,6 @@
 <template>
-	<div class="song-view">
-		<h1>{{ song.artist }} — {{ song.title }}</h1>
-		Posté le {{ song.registered | date }} par <router-link :to="{ name: 'user', params: song.submited }">{{ getUserName(song.submited) }}</router-link>
+	<div class="user-view">
+		{{ user }}
 	</div>
 </template>
 

@@ -10,7 +10,7 @@ const state = {
 const getters = {
 	list: state => state.lives,
 	count: state => state.lives.length,
-	getSongs: state => slug => state.lives.find(live => live.slug === slug),
+	getLive: state => slug => state.lives.find(live => live.slug === slug),
 }
 
 // Actions
