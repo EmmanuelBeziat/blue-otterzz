@@ -14,11 +14,13 @@
 	"dependencies": {
 		"axios": "^0.18.0",
 		"date-fns": "^2.0.0-alpha.27",
+		"get-audio-id": "^1.1.1",
+		"get-video-id": "^3.1.0",
 		"iview": "^3.2.2",
 		"onedrive-api": "^0.2.1",
-		"register-service-worker": "^1.5.2",
+		"register-service-worker": "^1.6.1",
 		"spotify-web-api-node": "^4.0.0",
-		"vue": "^2.5.22",
+		"vue": "^2.6.6",
 		"vue-axios": "^2.1.4",
 		"vue-router": "^3.0.1",
 		"vuex": "^3.0.1"
@@ -30,10 +32,10 @@
 		"@vue/cli-service": "^3.4.0",
 		"babel-eslint": "^10.0.1",
 		"babel-plugin-import": "^1.11.0",
-		"eslint": "^5.8.0",
-		"eslint-plugin-vue": "^5.0.0",
+		"eslint": "^5.14.0",
+		"eslint-plugin-vue": "^5.2.1",
 		"stylus": "^0.54.5",
 		"stylus-loader": "^3.0.2",
-		"vue-template-compiler": "^2.5.21"
+		"vue-template-compiler": "^2.6.6"
 	}
 }

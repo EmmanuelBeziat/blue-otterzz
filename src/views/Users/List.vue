@@ -19,12 +19,5 @@ export default {
 			return this.$store.getters['users/list']
 		},
 	},
-
-	methods: {
-		getUserName (slug) {
-			const user = this.$store.getters['users/getUser'](slug)
-			return user.name
-		},
-	}
 }
 </script>

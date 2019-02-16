@@ -4,7 +4,7 @@
 			<template slot-scope="{ row }" slot="scores"><Rate allow-half :value="getScore(row.scores)" custom-icon="icon-pick" disabled /></template>
 			<template slot-scope="{ row }" slot="submited">{{ getUserName(row.submited) }}</template>
 			<template slot-scope="{ row }" slot="registered">{{ row.registered | date }}</template>
-			<template slot-scope="{ row }" slot="url"><Player :source="row.url" /></template>
+			<template slot-scope="{ row }" slot="url"><ModalPlayer :source="row.url" /></template>
 			<template slot-scope="{ row }" slot="files">
 				<Tooltip content="Tablature" placement="top">
 					<a v-if="row.files.sheet" class="file-download" :href="row.files.sheet"><Icon size="24" custom="icon-pick" /></a>
@@ -20,7 +20,7 @@
 				</Tooltip>
 			</template>
 			<template slot-scope="{ row }" slot="action">
-				<Button icon="md-eye" type="primary" style="margin-right: 5px" @click="$router.push({ name: 'song', params: { slug: row.slug }})" />
+				<Button icon="md-eye" type="default" style="margin-right: 5px" @click="$router.push({ name: 'song', params: { slug: row.slug }})" />
 				<!-- <Button icon="md-trash" type="error" @click="remove(row._id)" /> -->
 			</template>
 		</Table>
@@ -28,10 +28,7 @@
 </template>
 
 <script>
-import { spotify } from '@/config'
-import Player from '@/components/player/Player'
-
-import Spotify from 'spotify-web-api-node'
+import ModalPlayer from '@/components/player/Modal'
 
 export default {
 	name: 'Songs',
@@ -46,7 +43,7 @@ export default {
 				{ title: 'Note', key: 'scores', slot: 'scores', sortable: true },
 				{ title: 'Proposé par', key: 'submited', slot: 'submited', sortable: true	},
 				{ title: 'Proposé le', key: 'registered', slot: 'registered', sortable: true },
-				{ title: 'Audio', slot: 'url', width: 320 },
+				{ title: 'Audio', slot: 'url', width: 120, align: 'center' },
 				{ title: 'Fichiers', slot: 'files', align: 'center', width: 160 },
 				{ title: 'Voir', width: 80, align: 'center', slot: 'action' }
 			]
@@ -59,30 +56,26 @@ export default {
 		},
 	},
 
-	mounted () {
-		this.connectSpotify()
-	},
-
 	components: {
-		Player
+		ModalPlayer
 	},
 
 	methods: {
+		/**
+		 * Get all the scores and make an average
+		 * @param value { Array } Values
+		 */
 		getScore (values) {
 			return values.reduce((accumulator, value) => accumulator + value.note, 0) / values.length
 		},
 
+		/**
+		 * Get name of user by its slug
+		 * @param slug { String } Unique user ID
+		 */
 		getUserName (slug) {
 			const user = this.$store.getters['users/getUser'](slug)
 			return user.name
-		},
-
-		connectSpotify () {
-			const app = new Spotify({
-				clientId: spotify.clientID,
-				clientSecret: spotify.clientSecret,
-				redirectUri:'http://localhost:3040/'
-			})
 		}
 	}
 }
@@ -95,18 +88,3 @@ export default {
 	span&
 		color var(--color-grey)
 </style>
-
-<style lang="stylus">
-.ivu-rate-star-chart.ivu-rate-star-full .ivu-rate-star-first
-.ivu-rate-star-chart.ivu-rate-star-full .ivu-rate-star-second
-.ivu-rate-star-chart.ivu-rate-star-half .ivu-rate-star-first
-	color #2d8cf0 !important
-
-.ivu-rate-star-first
-	z-index 1
-
-.ivu-rate-star-chart.ivu-rate-star-zero .ivu-rate-star-second
-.ivu-rate-star-chart.ivu-rate-star-half .ivu-rate-star-second
-	color var(--color-grey) !important
-</style>
-

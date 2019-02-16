@@ -40,4 +40,5 @@ export default {
 	padding 1rem
 
 @require '~@/assets/styles/helpers.styl'
+@require '~@/assets/styles/iview-override.styl'
 </style>
