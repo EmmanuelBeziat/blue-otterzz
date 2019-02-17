@@ -6,6 +6,7 @@ import Live from './views/Lives/View'
 import Lives from './views/Lives/List'
 import User from './views/Users/View'
 import Users from './views/Users/List'
+import UserEdit from './views/Users/Edit'
 
 Vue.use(Router)
 
@@ -47,15 +48,27 @@ export default new Router({
 		{
 			path: '/users/:slug',
 			name: 'user',
-			component: User
+			component: User,
 		},
 		{
-			path: '/about',
-			name: 'about',
-			// route level code-splitting
-			// this generates a separate chunk (about.[hash].js) for this route
-			// which is lazy-loaded when the route is visited.
-			component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-		}
+			path: '/users/:slug/edit',
+			name: 'user-edit',
+			component: UserEdit
+		},
+		{
+			path: '/login',
+			name: 'login',
+			component: () => import(/* webpackChunkName: "Login" */ './views/Login/Login.vue')
+		},
+		{
+			path: '/register',
+			name: 'register',
+			component: () => import(/* webpackChunkName: "Register" */ './views/Login/Register.vue')
+		},
+		{
+			path: '/lost-password',
+			name: 'password',
+			component: () => import(/* webpackChunkName: "Password" */ './views/Login/Password.vue')
+		},
 	]
 })
