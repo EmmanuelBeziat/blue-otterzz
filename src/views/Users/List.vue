@@ -4,7 +4,11 @@
 			<p slot="title">{{ user.name }}</p>
 			<Avatar slot="extra" icon="ios-person" size="small" />
 			<div>
-				<span v-for="(instrument, key) in user.instruments" :key="key">{{ instrument }}</span>
+				<Tooltip :content="instrument" placement="top" v-for="(instrument, key) in user.instruments" :key="key">
+					<Icon v-if="instrument === 'chant'" type="md-microphone" size="22" />
+					<Icon v-if="instrument === 'guitare'" custom="icon-pick" size="22" />
+					<Icon v-if="instrument === 'basse'" custom="icon-pick" size="22" />
+				</Tooltip>
 			</div>
 		</Card>
 	</div>
@@ -18,6 +22,13 @@ export default {
 		users () {
 			return this.$store.getters['users/list']
 		},
-	},
+	}
 }
 </script>
+
+<style lang="stylus" scoped>
+.users
+	display grid
+	grid-template-columns repeat(auto-fit, minmax(240px, 1fr))
+	grid-gap 1rem
+</style>

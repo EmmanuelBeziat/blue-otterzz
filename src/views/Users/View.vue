@@ -9,16 +9,9 @@ export default {
 	name: 'User',
 
 	computed: {
-		song () {
-			return this.$store.getters['songs/getSong'](this.$route.params.slug)
+		user () {
+			return this.$store.getters['users/getUser'](this.$route.params.slug)
 		}
 	},
-
-	methods: {
-		getUserName (slug) {
-			const user = this.$store.getters['users/getUser'](slug)
-			return user.name
-		},
-	}
 }
 </script>

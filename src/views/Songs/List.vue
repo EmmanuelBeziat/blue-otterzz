@@ -2,7 +2,7 @@
 	<div class="dashboard">
 		<Table class="songs" :columns="columns" :data="songs">
 			<template slot-scope="{ row }" slot="scores"><Rate allow-half :value="getScore(row.scores)" custom-icon="icon-pick" disabled /></template>
-			<template slot-scope="{ row }" slot="submited">{{ getUserName(row.submited) }}</template>
+			<template slot-scope="{ row }" slot="submited"><router-link :to="{ name: 'user', params: { slug: row.submited }}">{{ getUserName(row.submited) }}</router-link></template>
 			<template slot-scope="{ row }" slot="registered">{{ row.registered | date }}</template>
 			<template slot-scope="{ row }" slot="url"><ModalPlayer :source="row.url" /></template>
 			<template slot-scope="{ row }" slot="files">
