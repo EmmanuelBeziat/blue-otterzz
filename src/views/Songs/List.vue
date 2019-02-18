@@ -7,15 +7,15 @@
 			<template slot-scope="{ row }" slot="url"><ModalPlayer :source="row.url" /></template>
 			<template slot-scope="{ row }" slot="files">
 				<Tooltip content="Tablature" placement="top">
-					<a v-if="row.files.sheet" class="file-download" :href="row.files.sheet"><Icon size="24" custom="icon-pick" /></a>
+					<a v-if="row.files.sheet.length" class="file-download" :href="row.files.sheet[row.files.sheet.length - 1].file"><Icon size="24" custom="icon-pick" /></a>
 					<span v-else class="file-download"><Icon size="24" custom="icon-pick" /></span>
 				</Tooltip>
 				<Tooltip content="Paroles" placement="top">
-					<a v-if="row.files.lyrics" class="file-download" :href="row.files.lyrics"><Icon size="24" type="md-microphone" /></a>
+					<a v-if="row.files.lyrics.length" class="file-download" :href="row.files.lyrics[row.files.lyrics.length - 1].file"><Icon size="24" type="md-microphone" /></a>
 					<span v-else class="file-download"><Icon size="24" type="md-microphone" /></span>
 				</Tooltip>
 				<Tooltip content="Backtrack" placement="top">
-					<a v-if="row.files.backtrack" class="file-download" :href="row.files.backtrack"><Icon size="24" type="md-laptop" /></a>
+					<a v-if="row.files.backtrack.length" class="file-download" :href="row.files.backtrack[row.files.backtrack.length - 1].file"><Icon size="24" type="md-laptop" /></a>
 					<span v-else class="file-download"><Icon size="24" type="md-laptop" /></span>
 				</Tooltip>
 			</template>
@@ -29,9 +29,11 @@
 
 <script>
 import ModalPlayer from '@/components/player/Modal'
+import getUserName from '@/plugins/mixins/getUserName'
 
 export default {
 	name: 'Songs',
+	mixins: [getUserName],
 
 	data () {
 		return {
@@ -68,15 +70,6 @@ export default {
 		getScore (values) {
 			return values.reduce((accumulator, value) => accumulator + value.note, 0) / values.length
 		},
-
-		/**
-		 * Get name of user by its slug
-		 * @param slug { String } Unique user ID
-		 */
-		getUserName (slug) {
-			const user = this.$store.getters['users/getUser'](slug)
-			return user.name
-		}
 	}
 }
 </script>

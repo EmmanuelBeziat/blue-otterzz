@@ -4,10 +4,22 @@
 		"slug": "bon-jovi-you-give-love-a-bad-name",
 		"isActive": true,
 		"scores": [
-			{ "user": "emmanuel", "note": 3 },
-			{ "user": "sylvain", "note": 4 },
-			{ "user": "valentin", "note": 3 },
-			{ "user": "wendy", "note": 2 }
+			{
+				"user": "emmanuel",
+				"note": 3
+			},
+			{
+				"user": "sylvain",
+				"note": 4
+			},
+			{
+				"user": "valentin",
+				"note": 3
+			},
+			{
+				"user": "wendy",
+				"note": 2
+			}
 		],
 		"submited": "valentin",
 		"title": "You Give Love a Bad Name",
@@ -21,9 +33,37 @@
 		"url": "https://www.deezer.com/track/7332936?utm_source=deezer&utm_content=track-7332936&utm_term=8803703_1550288884&utm_medium=web",
 		"files": {
 			"root": "machin",
-			"sheet": "tab.gp5",
-			"backtrack": "backtrack.mp3",
-			"lyrics": "lyrics.txt"
+			"sheet": [
+				{
+					"file": "tab.gp5",
+					"uploadDate": "2015-01-23T08:15:43.655Z",
+					"uploader": "emmanuel"
+				},
+				{
+					"file": "tab.gp5",
+					"uploadDate": "2015-01-23T08:15:43.655Z",
+					"uploader": "emmanuel"
+				},
+				{
+					"file": "tab.gp5",
+					"uploadDate": "2015-01-23T08:15:43.655Z",
+					"uploader": "emmanuel"
+				}
+			],
+			"backtrack": [
+				{
+					"file": "backtrack.mp3",
+					"uploadDate": "2015-01-23T08:15:43.655Z",
+					"uploader": "emmanuel"
+				}
+			],
+			"lyrics": [
+				{
+					"file": "lyrics.txt",
+					"uploadDate": "2015-01-23T08:15:43.655Z",
+					"uploader": "emmanuel"
+				}
+			]
 		}
 	},
 	{
@@ -31,10 +71,22 @@
 		"slug": "speedy-ortiz-no-below",
 		"isActive": true,
 		"scores": [
-			{ "user": "emmanuel", "note": 2 },
-			{ "user": "sylvain", "note": 2 },
-			{ "user": "valentin", "note": 2 },
-			{ "user": "wendy", "note": 4 }
+			{
+				"user": "emmanuel",
+				"note": 2
+			},
+			{
+				"user": "sylvain",
+				"note": 2
+			},
+			{
+				"user": "valentin",
+				"note": 2
+			},
+			{
+				"user": "wendy",
+				"note": 4
+			}
 		],
 		"submited": "wendy",
 		"title": "No Below",
@@ -48,9 +100,32 @@
 		"url": "https://www.youtube.com/watch?v=yDJ1YWvlIB8",
 		"files": {
 			"root": "machin",
-			"sheet": "tab.gp5",
-			"backtrack": "backtrack.mp3",
-			"lyrics": "lyrics.txt"
+			"sheet": [
+				{
+					"file": "tab.gp5",
+					"uploadDate": "2015-01-23T08:15:43.655Z",
+					"uploader": "emmanuel"
+				}
+			],
+			"backtrack": [
+				{
+					"file": "backtrack.mp3",
+					"uploadDate": "2015-01-23T08:15:43.655Z",
+					"uploader": "emmanuel"
+				},
+				{
+					"file": "backtrack.mp3",
+					"uploadDate": "2015-01-23T08:15:43.655Z",
+					"uploader": "emmanuel"
+				}
+			],
+			"lyrics": [
+				{
+					"file": "lyrics.txt",
+					"uploadDate": "2015-01-23T08:15:43.655Z",
+					"uploader": "emmanuel"
+				}
+			]
 		}
 	},
 	{
@@ -58,10 +133,22 @@
 		"slug": "the-killers-somebody-told-me",
 		"isActive": true,
 		"scores": [
-			{ "user": "emmanuel", "note": 5 },
-			{ "user": "sylvain", "note": 5 },
-			{ "user": "valentin", "note": 5 },
-			{ "user": "wendy", "note": 5 }
+			{
+				"user": "emmanuel",
+				"note": 5
+			},
+			{
+				"user": "sylvain",
+				"note": 5
+			},
+			{
+				"user": "valentin",
+				"note": 5
+			},
+			{
+				"user": "wendy",
+				"note": 5
+			}
 		],
 		"submited": "wendy",
 		"title": "Somebody Told Me",
@@ -75,9 +162,27 @@
 		"url": "spotify:track:3twNvmDtFQtAd5gMKedhLD",
 		"files": {
 			"root": "machin",
-			"sheet": "tab.gp5",
-			"backtrack": "backtrack.mp3",
-			"lyrics": "lyrics.txt"
+			"sheet": [
+				{
+					"file": "tab.gp5",
+					"uploadDate": "2015-01-23T08:15:43.655Z",
+					"uploader": "emmanuel"
+				}
+			],
+			"backtrack": [
+				{
+					"file": "backtrack.mp3",
+					"uploadDate": "2015-01-23T08:15:43.655Z",
+					"uploader": "emmanuel"
+				}
+			],
+			"lyrics": [
+				{
+					"file": "lyrics.txt",
+					"uploadDate": "2015-01-23T08:15:43.655Z",
+					"uploader": "emmanuel"
+				}
+			]
 		}
 	},
 	{
@@ -85,10 +190,22 @@
 		"slug": "italo-brothers-stamp-on-the-ground",
 		"isActive": true,
 		"scores": [
-			{ "user": "emmanuel", "note": 5 },
-			{ "user": "sylvain", "note": 5 },
-			{ "user": "valentin", "note": 4 },
-			{ "user": "wendy", "note": 5 }
+			{
+				"user": "emmanuel",
+				"note": 5
+			},
+			{
+				"user": "sylvain",
+				"note": 5
+			},
+			{
+				"user": "valentin",
+				"note": 4
+			},
+			{
+				"user": "wendy",
+				"note": 5
+			}
 		],
 		"submited": "emmanuel",
 		"title": "Stamp on the Ground",
@@ -102,19 +219,49 @@
 		"url": "https://youtu.be/cHcVU5cGUNE",
 		"files": {
 			"root": "machin",
-			"sheet": "tab.gp5",
-			"backtrack": "backtrack.mp3",
-			"lyrics": "lyrics.txt"
+			"sheet": [
+				{
+					"file": "tab.gp5",
+					"uploadDate": "2015-01-23T08:15:43.655Z",
+					"uploader": "emmanuel"
+				}
+			],
+			"backtrack": [
+				{
+					"file": "backtrack.mp3",
+					"uploadDate": "2015-01-23T08:15:43.655Z",
+					"uploader": "emmanuel"
+				}
+			],
+			"lyrics": [
+				{
+					"file": "lyrics.txt",
+					"uploadDate": "2015-01-23T08:15:43.655Z",
+					"uploader": "emmanuel"
+				}
+			]
 		}
 	},
 	{
 		"_id": "5c614fc58ab0aa3fc9488f6e",
 		"isActive": true,
 		"scores": [
-			{ "user": "emmanuel", "note": 3 },
-			{ "user": "sylvain", "note": 5 },
-			{ "user": "valentin", "note": 3 },
-			{ "user": "wendy", "note": 4 }
+			{
+				"user": "emmanuel",
+				"note": 3
+			},
+			{
+				"user": "sylvain",
+				"note": 5
+			},
+			{
+				"user": "valentin",
+				"note": 3
+			},
+			{
+				"user": "wendy",
+				"note": 4
+			}
 		],
 		"slug": "no-doubt-dont-speak",
 		"submited": "sylvain",
@@ -129,19 +276,43 @@
 		"url": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/TR3Vdo5etCQ\" frameborder=\"0\" allow=\"autoplay; encrypted-media; picture-in-picture\" allowfullscreen></iframe>",
 		"files": {
 			"root": "machin",
-			"sheet": "tab.gp5",
+			"sheet": [
+				{
+					"file": "tab.gp5",
+					"uploadDate": "2015-01-23T08:15:43.655Z",
+					"uploader": "emmanuel"
+				}
+			],
 			"backtrack": "",
-			"lyrics": "lyrics.txt"
+			"lyrics": [
+				{
+					"file": "lyrics.txt",
+					"uploadDate": "2015-01-23T08:15:43.655Z",
+					"uploader": "emmanuel"
+				}
+			]
 		}
 	},
 	{
 		"_id": "5c614fc5e605419b090bdc9b",
 		"isActive": true,
 		"scores": [
-			{ "user": "emmanuel", "note": 4 },
-			{ "user": "sylvain", "note": 4 },
-			{ "user": "valentin", "note": 3 },
-			{ "user": "wendy", "note": 4 }
+			{
+				"user": "emmanuel",
+				"note": 4
+			},
+			{
+				"user": "sylvain",
+				"note": 4
+			},
+			{
+				"user": "valentin",
+				"note": 3
+			},
+			{
+				"user": "wendy",
+				"note": 4
+			}
 		],
 		"slug": "on-ok-rock-liar",
 		"submited": "wendy",
@@ -157,8 +328,20 @@
 		"files": {
 			"root": "machin",
 			"sheet": "",
-			"backtrack": "backtrack.mp3",
-			"lyrics": "lyrics.txt"
+			"backtrack": [
+				{
+					"file": "backtrack.mp3",
+					"uploadDate": "2015-01-23T08:15:43.655Z",
+					"uploader": "emmanuel"
+				}
+			],
+			"lyrics": [
+				{
+					"file": "lyrics.txt",
+					"uploadDate": "2015-01-23T08:15:43.655Z",
+					"uploader": "emmanuel"
+				}
+			]
 		}
 	}
 ]

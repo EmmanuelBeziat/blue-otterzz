@@ -5,9 +5,9 @@
 			<Avatar slot="extra" icon="ios-person" size="small" />
 			<div>
 				<Tooltip :content="instrument" placement="top" v-for="(instrument, key) in user.instruments" :key="key">
-					<Icon v-if="instrument === 'chant'" type="md-microphone" size="22" />
-					<Icon v-if="instrument === 'guitare'" custom="icon-pick" size="22" />
-					<Icon v-if="instrument === 'basse'" custom="icon-pick" size="22" />
+					<Icon v-if="instrument === 'sing'" type="md-microphone" size="22" />
+					<Icon v-if="instrument === 'guitar'" custom="icon-pick" size="22" />
+					<Icon v-if="instrument === 'bass'" custom="icon-pick" size="22" />
 				</Tooltip>
 			</div>
 		</Card>
