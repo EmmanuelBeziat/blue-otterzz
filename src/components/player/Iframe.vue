@@ -22,7 +22,6 @@ export default {
 		 * Open Iframe modal based on url type
 		 */
 		getIframe () {
-			console.log(this.$props.source)
 			const song = this.parseSource(this.$props.source)
 
 			switch (song.service) {

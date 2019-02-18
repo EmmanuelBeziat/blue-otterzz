@@ -7,7 +7,7 @@
 			Aucun fichier trouvé
 		</div>
 
-		<Upload :action="'/'" ref="upload-tabs" :on-success="uploadSuccess" :format="formats" type="drag">
+		<Upload :action="'/'" ref="upload-tabs" :on-success="uploadSuccess" :on-error="uploadError" :max-size="options.maxSize" :format="options.formats" type="drag">
 			<div class="upload-field">
 				<Icon type="md-cloud-upload" size="52" />
 				<br>Cliquez ou faites glisser un fichier…
@@ -21,11 +21,15 @@ import getUserName from '@/plugins/mixins/getUserName'
 
 export default {
 	name: 'FilesList',
-	props: ['files', 'formats'],
+	props: ['files', 'options'],
 	mixins: [getUserName],
 
 	methods: {
 		uploadSuccess (file) {
+			console.log(file)
+		},
+
+		uploadError (file) {
 			console.log(file)
 		}
 	}

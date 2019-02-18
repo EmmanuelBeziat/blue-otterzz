@@ -9,13 +9,13 @@
 			<Divider><h1>Fichiers</h1></Divider>
 
 			<h2><Icon custom="icon-pick" /> Tablatures &amp; partitions</h2>
-			<FilesList :files="song.files.sheet" :formats="fileFormats.tabs" />
+			<FilesList :files="song.files.sheet" :options="{ formats: fileFormats.tabs, maxSize: 500 }" />
 
 			<h2><Icon type="md-laptop" /> Backtracks</h2>
-			<FilesList :files="song.files.backtrack" :formats="fileFormats.backtracks" />
+			<FilesList :files="song.files.backtrack" :options="{ formats: fileFormats.backtracks, maxSize: 131072 }" />
 
 			<h2><Icon type="md-microphone" /> Paroles</h2>
-			<FilesList :files="song.files.lyrics" :formats="fileFormats.lyrics" />
+			<FilesList :files="song.files.lyrics" :options="{ formats: fileFormats.lyrics, maxSize: 4096 }" />
 		</section>
 	</div>
 </template>
