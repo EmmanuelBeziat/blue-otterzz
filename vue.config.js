@@ -13,7 +13,7 @@ module.exports = {
 		]
 	},
 
-	outputDir: '../dist',
+	outputDir: '../site',
 	devServer: {
 		port: 3040
 	}
