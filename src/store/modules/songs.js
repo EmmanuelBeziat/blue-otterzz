@@ -1,9 +1,8 @@
-/* import axios from 'axios'
-import { api } from '@/config' */
-
+import axios from 'axios'
+import { api } from '@/config'
 // Initial state
 const state = {
-	songs: null,
+	songs: [],
 }
 
 // Getters
@@ -13,11 +12,12 @@ const getters = {
 	getSong: state => slug => state.songs.find(song => song.slug === slug)
 }
 
+
 // Actions
 const actions = {
 	async init ({ commit }) {
-		// let { data } = await axios.get(api.songs)
-		commit('SET_SONGS', require(`@/assets/data/songs.json`))
+		let { data } = await axios.get(api.root + api.routes.songs)
+		commit('SET_SONGS', data)
 	},
 
 	add ({ commit }, song) {
@@ -44,12 +44,12 @@ const mutations = {
 	},
 
 	EDIT_SONG (state, song) {
-		const index = state.songs.findIndex(single => single.id = song.id)
+		const index = state.songs.findIndex(single => single.slug = song.slug)
 		state.songs[index] = song
 	},
 
 	REMOVE_SONG (state, song) {
-		const index = state.songs.findIndex(single => single.id = song.id)
+		const index = state.songs.findIndex(single => single.slug = song.slug)
 		state.songs.splice(index, 1)
 	}
 }

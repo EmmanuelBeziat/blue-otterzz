@@ -1,9 +1,9 @@
-/* import axios from 'axios'
-import { api } from '@/config' */
+import axios from 'axios'
+import { api } from '@/config'
 
 // Initial state
 const state = {
-	users: null,
+	users: [],
 }
 
 // Getters
@@ -15,8 +15,8 @@ const getters = {
 // Actions
 const actions = {
 	async init ({ commit }) {
-		// let { data } = await axios.get(api.users)
-		commit('SET_USERS', require(`@/assets/data/users.json`))
+		let { data } = await axios.get(api.root + api.routes.users)
+		commit('SET_USERS', data)
 	},
 
 	add ({ commit }, user) {
@@ -43,12 +43,12 @@ const mutations = {
 	},
 
 	EDIT_USER (state, user) {
-		const index = state.users.findIndex(single => single.id = user.id)
+		const index = state.users.findIndex(single => single.slug = user.slug)
 		state.users[index] = user
 	},
 
 	REMOVE_user (state, user) {
-		const index = state.users.findIndex(single => single.id = user.id)
+		const index = state.users.findIndex(single => single.slug = user.slug)
 		state.users.splice(index, 1)
 	}
 }

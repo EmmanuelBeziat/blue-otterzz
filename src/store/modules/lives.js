@@ -1,9 +1,9 @@
-/* import axios from 'axios'
-import { api } from '@/config' */
+import axios from 'axios'
+import { api } from '@/config'
 
 // Initial state
 const state = {
-	lives: null,
+	lives: [],
 }
 
 // Getters
@@ -16,8 +16,8 @@ const getters = {
 // Actions
 const actions = {
 	async init ({ commit }) {
-		// let { data } = await axios.get(api.lives)
-		commit('SET_LIVES', require(`@/assets/data/lives.json`))
+		let { data } = await axios.get(api.root + api.routes.lives)
+		commit('SET_LIVES', data)
 	},
 
 	add ({ commit }, live) {
@@ -44,12 +44,12 @@ const mutations = {
 	},
 
 	EDIT_LIVE (state, live) {
-		const index = state.lives.findIndex(single => single.id = live.id)
+		const index = state.lives.findIndex(single => single.slug = live.slug)
 		state.lives[index] = live
 	},
 
 	REMOVE_LIVE (state, live) {
-		const index = state.lives.findIndex(single => single.id = live.id)
+		const index = state.lives.findIndex(single => single.slug = live.slug)
 		state.lives.splice(index, 1)
 	}
 }

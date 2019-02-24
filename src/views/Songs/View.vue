@@ -1,22 +1,24 @@
 <template>
 	<div class="song-view">
-		<h1>{{ song.artist }} — {{ song.title }}</h1>
-		Posté {{ song.registered | date }} par <router-link :to="{ name: 'user', params: { slug: song.submited }}">{{ getUserName(song.submited) }}</router-link>
+		<template v-if="song">
+			<h1>{{ song.infos.artist }} — {{ song.infos.title }}</h1>
+			Posté {{ song.submited.date | date }} par <router-link :to="{ name: 'user', params: { slug: song.submited.user }}">{{ getUserName(song.submited.user) }}</router-link>
 
-		<IframePlayer class="iframe-content" :source="song.url" />
+			<IframePlayer class="iframe-content" :source="song.meta.url" />
 
-		<section class="files">
-			<Divider><h1>Fichiers</h1></Divider>
+			<section class="files">
+				<Divider><h1>Fichiers</h1></Divider>
 
-			<h2><Icon custom="icon-pick" /> Tablatures &amp; partitions</h2>
-			<FilesList :files="song.files.sheet" :options="{ formats: fileFormats.tabs, maxSize: 500 }" />
+				<h2><Icon custom="icon-pick" /> Tablatures &amp; partitions</h2>
+				<FilesList :files="song.files.sheets" :options="{ formats: fileFormats.tabs, maxSize: 500 }" />
 
-			<h2><Icon type="md-laptop" /> Backtracks</h2>
-			<FilesList :files="song.files.backtrack" :options="{ formats: fileFormats.backtracks, maxSize: 131072 }" />
+				<h2><Icon type="md-laptop" /> Backtracks</h2>
+				<FilesList :files="song.files.backtracks" :options="{ formats: fileFormats.backtracks, maxSize: 131072 }" />
 
-			<h2><Icon type="md-microphone" /> Paroles</h2>
-			<FilesList :files="song.files.lyrics" :options="{ formats: fileFormats.lyrics, maxSize: 4096 }" />
-		</section>
+				<h2><Icon type="md-microphone" /> Paroles</h2>
+				<FilesList :files="song.files.lyrics" :options="{ formats: fileFormats.lyrics, maxSize: 4096 }" />
+			</section>
+		</template>
 	</div>
 </template>
 
