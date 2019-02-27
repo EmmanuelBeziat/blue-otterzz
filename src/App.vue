@@ -25,6 +25,7 @@ export default {
 
 <style lang="stylus">
 @require '~@/assets/fonts/music/music.styl'
+@require '~@/assets/styles/vendors/normalize.styl'
 
 :root
 	--color-white #fff

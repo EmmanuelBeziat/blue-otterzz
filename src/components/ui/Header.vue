@@ -1,6 +1,8 @@
 <template>
 	<header class="header ivu-menu ivu-menu-dark">
-		<router-link class="header-logo" to="/">Blue OtterZZ</router-link>
+		<router-link class="header-logo" to="/">
+			<img src="@/assets/img/blue-otterzz-logo.svg" alt="Blue OtterZZ">
+		</router-link>
 
 		<nav class="menu">
 			<router-link class="menu-item" :to="{ name: 'songs' }">
@@ -28,9 +30,13 @@ export default {
 	grid-template-columns 10rem 1fr
 
 .header-logo
-	padding 0 1rem
 	color var(--color-white)
 	line-height 60px
+	padding .625rem 1rem
+
+	img
+		vertical-align middle
+		height 56px
 
 .menu
 	display flex

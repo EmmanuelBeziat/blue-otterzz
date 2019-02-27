@@ -1,58 +1,73 @@
 <template>
 	<div class="user-edit">
-		<h2>Modifier les informations de {{ user.name }}</h2>
+		<template v-if="user">
+			<h2>Modifier les informations de {{ user.username }}</h2>
 
-		<Form :model="editForm" ref="editForm" :rules="ruleEdit">
-			<FormItem prop="username">
-				<i-input type="text" v-model="editForm.username" placeholder="Nom d’utilisateur">
-					<Icon type="md-person" slot="prepend" />
-				</i-input>
-			</FormItem>
+			<Form :model="editForm" ref="editForm" :rules="ruleEdit">
+				<FormItem prop="username">
+					<i-input type="text" v-model="editForm.username" placeholder="Nom d’utilisateur">
+						<Icon type="md-person" slot="prepend" />
+					</i-input>
+				</FormItem>
 
-			<FormItem prop="email">
-				<i-input type="email" v-model="editForm.email" placeholder="E-mail">
-					<Icon type="md-mail" slot="prepend" />
-				</i-input>
-			</FormItem>
+				<FormItem prop="email">
+					<i-input type="email" v-model="editForm.email" placeholder="E-mail">
+						<Icon type="md-mail" slot="prepend" />
+					</i-input>
+				</FormItem>
 
-			<Divider>Vos instruments</Divider>
+				<FormItem prop="bio">
+					<i-input type="textarea" v-model="editForm.bio" placeholder="Bio" />
+				</FormItem>
 
-			<FormItem prop="instruments">
-				<CheckboxGroup v-model="editForm.instruments">
-					<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': editForm.instruments.includes('sing') }" label="sing">Chant</Checkbox>
-					<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': editForm.instruments.includes('guitar') }" label="guitar">Guitare</Checkbox>
-					<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': editForm.instruments.includes('bass') }" label="bass">Basse</Checkbox>
-					<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': editForm.instruments.includes('drums') }" label="drums">Batterie</Checkbox>
-					<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': editForm.instruments.includes('keyboard') }" label="keyboard">Piano / Claviers</Checkbox>
-					<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': editForm.instruments.includes('dj') }" label="dj">DJ / Platines</Checkbox>
-					<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': editForm.instruments.includes('other') }" label="other">Autre</Checkbox>
-				</CheckboxGroup>
-			</FormItem>
+				<Divider>Préférences</Divider>
 
-			<Divider>Changer de mot de passe</Divider>
+				<FormItem prop="notifications" label="Notifications">
+					<i-switch v-model="editForm.notifications">
+						<Icon type="md-checkmark" slot="open"></Icon>
+						<Icon type="md-close" slot="close"></Icon>
+					</i-switch>
+				</FormItem>
 
-			<FormItem prop="password">
-				<i-input type="password" v-model="editForm.password" placeholder="Mot de passe actuel">
-					<Icon type="md-lock" slot="prepend" />
-				</i-input>
-			</FormItem>
+				<Divider>Vos instruments</Divider>
 
-			<FormItem prop="newPassword">
-				<i-input type="password" v-model="editForm.newPassword" placeholder="Nouveau mot de passe">
-					<Icon type="md-lock" slot="prepend" />
-				</i-input>
-			</FormItem>
+				<FormItem prop="instruments">
+					<CheckboxGroup v-model="editForm.instruments">
+						<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': editForm.instruments.includes('sing') }" label="sing">Chant</Checkbox>
+						<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': editForm.instruments.includes('guitar') }" label="guitar">Guitare</Checkbox>
+						<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': editForm.instruments.includes('bass') }" label="bass">Basse</Checkbox>
+						<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': editForm.instruments.includes('drums') }" label="drums">Batterie</Checkbox>
+						<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': editForm.instruments.includes('keyboard') }" label="keyboard">Piano / Claviers</Checkbox>
+						<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': editForm.instruments.includes('dj') }" label="dj">DJ / Platines</Checkbox>
+						<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': editForm.instruments.includes('other') }" label="other">Autre</Checkbox>
+					</CheckboxGroup>
+				</FormItem>
 
-			<FormItem prop="newPasswordCheck">
-				<i-input type="password" v-model="editForm.newPasswordCheck" placeholder="Confirmer le mot de passe">
-					<Icon type="md-lock" slot="prepend" />
-				</i-input>
-			</FormItem>
+				<Divider>Changer de mot de passe</Divider>
 
-			<FormItem>
-				<Button type="primary" icon="md-checkmark" long @click="handleSubmit('editForm')">Enregistrer les modifications</Button>
-			</FormItem>
-		</Form>
+				<FormItem prop="password">
+					<i-input type="password" v-model="editForm.password" placeholder="Mot de passe actuel">
+						<Icon type="md-lock" slot="prepend" />
+					</i-input>
+				</FormItem>
+
+				<FormItem prop="newPassword">
+					<i-input type="password" v-model="editForm.newPassword" placeholder="Nouveau mot de passe">
+						<Icon type="md-lock" slot="prepend" />
+					</i-input>
+				</FormItem>
+
+				<FormItem prop="newPasswordCheck">
+					<i-input type="password" v-model="editForm.newPasswordCheck" placeholder="Confirmer le mot de passe">
+						<Icon type="md-lock" slot="prepend" />
+					</i-input>
+				</FormItem>
+
+				<FormItem>
+					<Button type="primary" icon="md-checkmark" long @click="handleSubmit('editForm')">Enregistrer les modifications</Button>
+				</FormItem>
+			</Form>
+		</template>
 	</div>
 </template>
 
@@ -101,12 +116,14 @@ export default {
 
 		editForm () {
 			return {
-				username: this.user.name,
+				username: this.user.username,
 				email: this.user.email,
+				bio: this.user.bio,
 				password: '',
 				newPassword: '',
 				newPasswordCheck: '',
-				instruments: this.user.instruments
+				instruments: this.user.instruments,
+				notifications: this.user.preferences.notifications
 			}
 		}
 	},
@@ -117,3 +134,8 @@ export default {
 	},
 }
 </script>
+
+<style lang="stylus" scoped>
+h2
+	margin 1em 0
+</style>

@@ -1,16 +1,22 @@
 <template>
 	<div class="users">
-		<Card v-for="user in users" :key="user.slug">
-			<p slot="title">{{ user.name }}</p>
-			<Avatar slot="extra" icon="ios-person" size="small" />
-			<div>
-				<Tooltip :content="instrument" placement="top" v-for="(instrument, key) in user.instruments" :key="key">
-					<Icon v-if="instrument === 'sing'" type="md-microphone" size="22" />
-					<Icon v-if="instrument === 'guitar'" custom="icon-pick" size="22" />
-					<Icon v-if="instrument === 'bass'" custom="icon-pick" size="22" />
-				</Tooltip>
-			</div>
-		</Card>
+		<template v-if="users">
+			<Card class="user-card" v-for="user in users" :key="user.slug">
+				<p class="user-card-title" slot="title">
+					<router-link :to="{ name: 'user', params: { slug: user.slug }}">{{ user.username }}</router-link>
+				</p>
+				<Avatar slot="extra" :src="user.picture" size="small" v-if="user.picture" />
+				<Avatar slot="extra" icon="ios-person" size="small" v-else />
+				<p>{{ user.bio }}</p>
+				<footer class="user-card-footer">
+					<Tooltip :content="instrument" placement="top" v-for="(instrument, key) in user.instruments" :key="key">
+						<Icon v-if="instrument === 'sing'" type="md-microphone" size="22" />
+						<Icon v-if="instrument === 'guitar'" custom="icon-pick" size="22" />
+						<Icon v-if="instrument === 'bass'" custom="icon-pick" size="22" />
+					</Tooltip>
+				</footer>
+			</Card>
+		</template>
 	</div>
 </template>
 
@@ -31,4 +37,10 @@ export default {
 	display grid
 	grid-template-columns repeat(auto-fit, minmax(240px, 1fr))
 	grid-gap 1rem
+
+.user-card-title
+	color inherit
+
+.user-card-footer
+	margin-top 1rem
 </style>
