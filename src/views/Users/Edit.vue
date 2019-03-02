@@ -3,27 +3,27 @@
 		<template v-if="user">
 			<h2>Modifier les informations de {{ user.username }}</h2>
 
-			<Form :model="editForm" ref="editForm" :rules="ruleEdit">
+			<Form :model="form" ref="userEdit" :rules="rules">
 				<FormItem prop="username">
-					<i-input type="text" v-model="editForm.username" placeholder="Nom d’utilisateur">
+					<i-input type="text" v-model="form.username" placeholder="Nom d’utilisateur">
 						<Icon type="md-person" slot="prepend" />
 					</i-input>
 				</FormItem>
 
 				<FormItem prop="email">
-					<i-input type="email" v-model="editForm.email" placeholder="E-mail">
+					<i-input type="email" v-model="form.email" placeholder="E-mail">
 						<Icon type="md-mail" slot="prepend" />
 					</i-input>
 				</FormItem>
 
 				<FormItem prop="bio">
-					<i-input type="textarea" v-model="editForm.bio" placeholder="Bio" />
+					<i-input type="textarea" v-model="form.bio" placeholder="Bio" />
 				</FormItem>
 
 				<Divider>Préférences</Divider>
 
 				<FormItem prop="notifications" label="Notifications">
-					<i-switch v-model="editForm.notifications">
+					<i-switch v-model="form.notifications">
 						<Icon type="md-checkmark" slot="open"></Icon>
 						<Icon type="md-close" slot="close"></Icon>
 					</i-switch>
@@ -32,39 +32,39 @@
 				<Divider>Vos instruments</Divider>
 
 				<FormItem prop="instruments">
-					<CheckboxGroup v-model="editForm.instruments">
-						<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': editForm.instruments.includes('sing') }" label="sing">Chant</Checkbox>
-						<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': editForm.instruments.includes('guitar') }" label="guitar">Guitare</Checkbox>
-						<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': editForm.instruments.includes('bass') }" label="bass">Basse</Checkbox>
-						<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': editForm.instruments.includes('drums') }" label="drums">Batterie</Checkbox>
-						<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': editForm.instruments.includes('keyboard') }" label="keyboard">Piano / Claviers</Checkbox>
-						<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': editForm.instruments.includes('dj') }" label="dj">DJ / Platines</Checkbox>
-						<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': editForm.instruments.includes('other') }" label="other">Autre</Checkbox>
+					<CheckboxGroup v-model="form.instruments">
+						<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': form.instruments.includes('sing') }" label="sing">Chant</Checkbox>
+						<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': form.instruments.includes('guitar') }" label="guitar">Guitare</Checkbox>
+						<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': form.instruments.includes('bass') }" label="bass">Basse</Checkbox>
+						<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': form.instruments.includes('drums') }" label="drums">Batterie</Checkbox>
+						<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': form.instruments.includes('keyboard') }" label="keyboard">Piano / Claviers</Checkbox>
+						<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': form.instruments.includes('dj') }" label="dj">DJ / Platines</Checkbox>
+						<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': form.instruments.includes('other') }" label="other">Autre</Checkbox>
 					</CheckboxGroup>
 				</FormItem>
 
 				<Divider>Changer de mot de passe</Divider>
 
 				<FormItem prop="password">
-					<i-input type="password" v-model="editForm.password" placeholder="Mot de passe actuel">
+					<i-input type="password" v-model="form.password" placeholder="Mot de passe actuel">
 						<Icon type="md-lock" slot="prepend" />
 					</i-input>
 				</FormItem>
 
 				<FormItem prop="newPassword">
-					<i-input type="password" v-model="editForm.newPassword" placeholder="Nouveau mot de passe">
+					<i-input type="password" v-model="form.newPassword" placeholder="Nouveau mot de passe">
 						<Icon type="md-lock" slot="prepend" />
 					</i-input>
 				</FormItem>
 
 				<FormItem prop="newPasswordCheck">
-					<i-input type="password" v-model="editForm.newPasswordCheck" placeholder="Confirmer le mot de passe">
+					<i-input type="password" v-model="form.newPasswordCheck" placeholder="Confirmer le mot de passe">
 						<Icon type="md-lock" slot="prepend" />
 					</i-input>
 				</FormItem>
 
 				<FormItem>
-					<Button type="primary" icon="md-checkmark" long @click="handleSubmit('editForm')">Enregistrer les modifications</Button>
+					<Button type="primary" icon="md-checkmark" long @click="handleSubmit('userEdit')">Enregistrer les modifications</Button>
 				</FormItem>
 			</Form>
 		</template>
@@ -77,7 +77,7 @@ export default {
 
 	data () {
 		const validatePassCheck = (rule, value, callback) => {
-			if (value !== this.editForm.newPassword) {
+			if (value !== this.form.newPassword) {
 				callback(new Error('Les deux mot de passe ne correspondent pas'))
 			}
 			else {
@@ -86,7 +86,7 @@ export default {
 		}
 
 		return {
-			ruleEdit: {
+			rules: {
 				username: [
 					{ required: true, message: 'Choisir votre nom d’utilisateur', trigger: 'blur' },
 				],
@@ -114,7 +114,7 @@ export default {
 			return this.$store.getters['users/getUser'](this.$route.params.slug)
 		},
 
-		editForm () {
+		form () {
 			return {
 				username: this.user.username,
 				email: this.user.email,

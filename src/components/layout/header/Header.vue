@@ -15,19 +15,29 @@
 				<Icon type="md-people" /> Groupe
 			</router-link>
 		</nav>
+
+		<nav class="menu-right">
+			<LoginMenu />
+		</nav>
 	</header>
 </template>
 
 <script>
+import LoginMenu from '@/components/layout/header/Login'
+
 export default {
-	name: 'Header'
+	name: 'Header',
+
+	components: {
+		LoginMenu
+	}
 }
 </script>
 
 <style lang="stylus" scoped>
 .header
 	display grid
-	grid-template-columns 10rem 1fr
+	grid-template-columns auto 1fr auto
 
 .header-logo
 	color var(--color-white)
@@ -40,7 +50,7 @@ export default {
 
 .menu
 	display flex
-	justify-content flex-end
+	justify-content center
 	padding 0 1rem
 
 .menu-item

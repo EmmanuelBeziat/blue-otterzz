@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import Header from '@/components/ui/Header'
+import Header from '@/components/layout/header/Header'
 
 export default {
 	components: {
@@ -37,8 +37,12 @@ export default {
 	display grid
 	grid-template-rows auto 1fr
 
+.content
+	display flex
+
 .main
 	padding 1rem
+	flex 1
 
 @require '~@/assets/styles/helpers.styl'
 @require '~@/assets/styles/iview-override.styl'

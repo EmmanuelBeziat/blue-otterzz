@@ -2,27 +2,27 @@
 	<Card class="login-card">
 		<h2 slot="title"><Icon type="md-key" /> S’enregistrer</h2>
 
-		<Form :model="registerForm" ref="registerForm" :rules="ruleRegister">
+		<Form :model="form" ref="userCreate" :rules="rules">
 			<FormItem prop="username">
-				<i-input type="text" v-model="registerForm.username" placeholder="Nom d’utilisateur">
+				<i-input type="text" v-model="form.username" placeholder="Nom d’utilisateur">
 					<Icon type="md-person" slot="prepend" />
 				</i-input>
 			</FormItem>
 
 			<FormItem prop="email">
-				<i-input type="email" v-model="registerForm.email" placeholder="E-mail">
+				<i-input type="email" v-model="form.email" placeholder="E-mail">
 					<Icon type="md-mail" slot="prepend" />
 				</i-input>
 			</FormItem>
 
 			<FormItem prop="password">
-				<i-input type="password" v-model="registerForm.password" placeholder="Mot de passe">
+				<i-input type="password" v-model="form.password" placeholder="Mot de passe">
 					<Icon type="md-lock" slot="prepend" />
 				</i-input>
 			</FormItem>
 
 			<FormItem prop="passwordCheck">
-				<i-input type="password" v-model="registerForm.passwordCheck" placeholder="Confirmer le mot de passe">
+				<i-input type="password" v-model="form.passwordCheck" placeholder="Confirmer le mot de passe">
 					<Icon type="md-lock" slot="prepend" />
 				</i-input>
 			</FormItem>
@@ -30,32 +30,35 @@
 			<Divider>Vos instruments</Divider>
 
 			<FormItem prop="instruments">
-				<CheckboxGroup v-model="registerForm.instruments">
-					<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': registerForm.instruments.includes('sing') }" label="sing">Chant</Checkbox>
-					<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': registerForm.instruments.includes('guitar') }" label="guitar">Guitare</Checkbox>
-					<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': registerForm.instruments.includes('bass') }" label="bass">Basse</Checkbox>
-					<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': registerForm.instruments.includes('drums') }" label="drums">Batterie</Checkbox>
-					<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': registerForm.instruments.includes('keyboard') }" label="keyboard">Piano / Claviers</Checkbox>
-					<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': registerForm.instruments.includes('dj') }" label="dj">DJ / Platines</Checkbox>
-					<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': registerForm.instruments.includes('other') }" label="other">Autre</Checkbox>
+				<CheckboxGroup v-model="form.instruments">
+					<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': form.instruments.includes('sing') }" label="sing">Chant</Checkbox>
+					<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': form.instruments.includes('guitar') }" label="guitar">Guitare</Checkbox>
+					<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': form.instruments.includes('bass') }" label="bass">Basse</Checkbox>
+					<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': form.instruments.includes('drums') }" label="drums">Batterie</Checkbox>
+					<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': form.instruments.includes('keyboard') }" label="keyboard">Piano / Claviers</Checkbox>
+					<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': form.instruments.includes('dj') }" label="dj">DJ / Platines</Checkbox>
+					<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': form.instruments.includes('other') }" label="other">Autre</Checkbox>
 				</CheckboxGroup>
 			</FormItem>
 
 			<FormItem>
-				<Button type="primary" icon="md-checkmark" long @click="handleSubmit('registerForm')">S’enregistrer</Button>
+				<Button type="primary" icon="md-checkmark" long @click="handleSubmit('userCreate')">S’enregistrer</Button>
 				<Button type="text" long :to="{ name: 'login' }">Déjà inscrit ?</Button>
 			</FormItem>
 		</Form>
+
+		<Spin size="large" fix v-if="loading" />
 	</Card>
 </template>
 
 <script>
+import { api } from '@/config'
 export default {
 	name: 'Register',
 
 	data () {
 		const validatePassCheck = (rule, value, callback) => {
-			if (value !== this.registerForm.password) {
+			if (value !== this.form.password) {
 				callback(new Error('Les deux mot de passe ne correspondent pas'))
 			}
 			else {
@@ -64,14 +67,15 @@ export default {
 		}
 
 		return {
-			registerForm: {
+			loading: false,
+			form: {
 				username: '',
 				email: '',
 				password: '',
 				passwordCheck: '',
 				instruments: [],
 			},
-			ruleRegister: {
+			rules: {
 				username: [
 					{ required: true, message: 'Choisir votre nom d’utilisateur', trigger: 'blur' },
 				],
@@ -93,13 +97,30 @@ export default {
 
 	methods: {
 		submitForm () {
-			this.$emit('on-submit', registerForm)
+			const user = {
+				username: this.form.username,
+				email: this.form.email,
+				password: this.form.password,
+				instruments: this.form.instruments
+			}
+
+			this.axios.post(api.routes.users, user)
+				.then(response => {
+					this.$store.dispatch('users/add', response.data)
+					this.$Message.success('Enregistrement terminé')
+					setTimeout(() => {
+						this.$router.push('/login')
+					}, 1000)
+				})
+				.catch(error => this.$Message.error('Erreur : ' + error.message))
+				.then(() => this.loading = false)
 		},
 
 		handleSubmit (name) {
 			this.$refs[name].validate(valid => {
 				if (valid) {
-					this.$Message.success('Enregistré')
+					this.loading = true
+					this.submitForm()
 				}
 				else {
 					this.$Message.error('Le formulaire est incomplet')

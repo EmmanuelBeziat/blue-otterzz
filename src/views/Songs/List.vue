@@ -41,6 +41,7 @@ export default {
 
 	data () {
 		return {
+			addNew: false,
 			filters: null,
 			columns: [
 				// { type: 'selection', width: 60, align: 'center' },
