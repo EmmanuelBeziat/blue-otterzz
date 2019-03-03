@@ -63,7 +63,11 @@ export default {
 			}
 			this.axios.post(api.routes.login, credentials)
 				.then(response => {
+					this.$store.dispatch('login/logIn', { user: response.data.user, token: response.data.token })
 					this.$Message.success('Connexion réussie')
+					setTimeout(() => {
+						this.$router.push('/')
+					}, 200)
 				})
 				.catch(error => this.$Message.error(`Connexion échouée : ${error.message}`))
 				.then(() => this.loading = false)

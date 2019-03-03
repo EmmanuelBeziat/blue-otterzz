@@ -1,8 +1,24 @@
 <template>
 	<div class="login-box">
-		<router-link class="login-item" :to="{ name: 'login' }"><Icon type="md-log-in" size="24" /> Se connecter</router-link>
+		<template v-if="isLogged">
+			<button class="login-btn login-item" @click="$store.dispatch('login/logOut')"><Icon type="md-log-out" size="24" /> Déconnexion</button>
+		</template>
+		<router-link v-else class="login-item" :to="{ name: 'login' }"><Icon type="md-log-in" size="24" /> Se connecter</router-link>
 	</div>
 </template>
+
+<script>
+export default {
+	name: 'LoginBox',
+
+	computed: {
+		isLogged () {
+			return this.$store.getters['login/isLogged']
+		}
+	}
+}
+</script>
+
 
 <style lang="stylus" scoped>
 .login-box
@@ -13,7 +29,7 @@
 	align-items center
 
 .login-item
-	padding 0 1em
+	padding 0
 	color var(--color-light-grey)
 	line-height 60px
 	transition .2s ease-in-out
@@ -44,5 +60,14 @@
 	&.active::after
 		opacity 1
 		transform translate(-50%, 0)
+
+
+.login-btn
+	background transparent
+	border 0
+	cursor pointer
+
+	&:hover
+		color var(--color-white)
 </style>
 

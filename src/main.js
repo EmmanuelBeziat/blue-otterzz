@@ -13,9 +13,10 @@ Vue.config.productionTip = false
 
 Vue.use(iView, { locale })
 
+store.dispatch('login/init')
+store.dispatch('users/init')
 store.dispatch('songs/init')
 store.dispatch('lives/init')
-store.dispatch('users/init')
 
 router.beforeEach((to, from, next) => {
 	iView.LoadingBar.start()

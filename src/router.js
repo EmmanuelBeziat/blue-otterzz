@@ -18,7 +18,7 @@ export default new Router({
 		{
 			path: '/',
 			name: 'home',
-			redirect: { name: 'songs' }
+			redirect: { name: 'songs' },
 		},
 		{
 			path: '/songs',
@@ -51,14 +51,18 @@ export default new Router({
 			component: User,
 		},
 		{
-			path: '/users/:slug/edit',
+			path: '/users/edit',
 			name: 'user-edit',
-			component: UserEdit
+			component: UserEdit,
 		},
 		{
 			path: '/login',
 			name: 'login',
-			component: () => import(/* webpackChunkName: "Login" */ './views/Login/Login.vue')
+			component: () => import(/* webpackChunkName: "Login" */ './views/Login/Login.vue'),
+			beforeEnter: (to, from, next) => {
+				const isLogged = window.localStorage.getItem('blue-otterzz-login')
+				isLogged && JSON.parse(isLogged.name !== '') ? next('/songs') :	next()
+			}
 		},
 		{
 			path: '/register',
@@ -69,6 +73,6 @@ export default new Router({
 			path: '/lost-password',
 			name: 'password',
 			component: () => import(/* webpackChunkName: "Password" */ './views/Login/Password.vue')
-		},
+		}
 	]
 })

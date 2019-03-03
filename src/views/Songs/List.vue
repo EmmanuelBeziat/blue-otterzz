@@ -2,12 +2,10 @@
 	<div class="dashboard">
 		<template v-if="songs.length">
 			<Table class="songs" :columns="columns" :data="songs">
-				<template slot-scope="{ row }" slot="artist">{{ row.infos.artist }}</template>
-				<template slot-scope="{ row }" slot="title">{{ row.infos.title }}</template>
-				<template slot-scope="{ row }" slot="score"><Rate allow-half :value="getScore(row.score)" custom-icon="icon-pick" disabled /></template>
-				<template slot-scope="{ row }" slot="submited"><router-link :to="{ name: 'user', params: { slug: row.submited.user }}">{{ getUserName(row.submited.user) }}</router-link></template>
-				<template slot-scope="{ row }" slot="registered">{{ row.submited.date | date }}</template>
-				<template slot-scope="{ row }" slot="url"><ModalPlayer :source="row.meta.url" /></template>
+				<template slot-scope="{ row }" slot="score"><Rate allow-half :value="row.score" custom-icon="icon-pick" disabled /></template>
+				<template slot-scope="{ row }" slot="submited"><router-link :to="{ name: 'user', params: { slug: row.user }}">{{ getUserName(row.user) }}</router-link></template>
+				<template slot-scope="{ row }" slot="registered">{{ row.date | date }}</template>
+				<template slot-scope="{ row }" slot="url"><ModalPlayer :source="row.url" /></template>
 				<template slot-scope="{ row }" slot="files">
 					<Tooltip content="Tablature" placement="top">
 						<a v-if="row.files.sheets.length" class="file-download" :href="row.files.sheets[row.files.sheet.length - 1].file"><Icon size="24" custom="icon-pick" /></a>
@@ -41,15 +39,13 @@ export default {
 
 	data () {
 		return {
-			addNew: false,
-			filters: null,
 			columns: [
 				// { type: 'selection', width: 60, align: 'center' },
-				{ title: 'Artiste', key: 'infos.artist', slot: 'artist', sortable: true },
-				{ title: 'Titre', key: 'infos.title', slot: 'title', sortable: true },
+				{ title: 'Artiste', key: 'artist', sortable: true },
+				{ title: 'Titre', key: 'title', sortable: true },
 				{ title: 'Note', key: 'score', slot: 'score', sortable: true },
-				{ title: 'Proposé par', key: 'submited.user', slot: 'submited', sortable: true	},
-				{ title: 'Proposé le', key: 'submited.date', slot: 'registered', sortable: true },
+				{ title: 'Proposé par', key: 'user', slot: 'submited', sortable: true	},
+				{ title: 'Proposé le', key: 'date', slot: 'registered', sortable: true },
 				{ title: 'Audio', slot: 'url', width: 120, align: 'center' },
 				{ title: 'Fichiers', slot: 'files', align: 'center', width: 160 },
 				{ title: 'Voir', width: 80, align: 'center', slot: 'action' }
@@ -59,7 +55,17 @@ export default {
 
 	computed: {
 		songs () {
-			return this.$store.getters['songs/list']
+			return this.$store.getters['songs/list'].map(key => {
+				return {
+					artist: key.infos.artist,
+					title: key.infos.title,
+					score: this.getScore(key.score),
+					date: key.submited.date,
+					user: key.submited.user,
+					url: key.meta.url,
+					files: key.files
+				}
+			})
 		},
 	},
 

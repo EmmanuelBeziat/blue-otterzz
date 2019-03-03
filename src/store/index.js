@@ -5,6 +5,7 @@ import Vuex from 'vuex'
 import songs from '@/store/modules/songs.js'
 import lives from '@/store/modules/lives.js'
 import users from '@/store/modules/users.js'
+import login from '@/store/modules/login.js'
 
 Vue.use(Vuex)
 
@@ -13,5 +14,6 @@ export default new Vuex.Store({
 		songs,
 		lives,
 		users,
+		login
 	},
 })
