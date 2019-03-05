@@ -1,15 +1,21 @@
 <template>
 	<Form :model="form" ref="addSong" :rules="rules" class="no-label">
 		<FormItem prop="title" label="Titre">
-			<i-input type="text" v-model="form.infos.title" placeholder="Titre" />
+			<i-input type="text" v-model="form.title" placeholder="Titre" />
 		</FormItem>
 
 		<FormItem prop="artist" label="Artiste">
-			<AutoComplete v-model="form.infos.artist" placeholder="Artiste" :data="artists" :filter-method="filterMethod" />
+			<AutoComplete v-model="form.artist" placeholder="Artiste" :data="artists" :filter-method="filterMethod" />
 		</FormItem>
 
 		<FormItem prop="url" label="Url de la musique">
-			<i-input type="text" v-model="form.meta.url" placeholder="URL de la musique (YouTube, Spotify, Vimeo, Deezer…)" />
+			<i-input type="text" v-model="form.url" placeholder="URL de la musique (YouTube, Spotify, Vimeo, Deezer…)" />
+		</FormItem>
+
+		<FormItem prop="style" label="Style musical">
+			<Select v-model="form.style">
+				<Option v-for="(style, key) in styles" :value="style" :key="key">{{ style }}</Option>
+			</Select>
 		</FormItem>
 
 		<FormItem>
@@ -22,25 +28,25 @@
 				</i-col>
 			</Row>
 		</FormItem>
+
+		<Spin size="large" fix v-if="loading" />
 	</Form>
 </template>
 
 <script>
+import { api } from '@/config'
+
 export default {
 	name: 'AddSong',
 
 	data () {
 		return {
+			loading: false,
 			form: {
-				infos: {
-					title: '',
-					artist: '',
-				},
-				meta: {
-					url: '',
-					style: '',
-					tuning: ''
-				},
+				title: '',
+				artist: '',
+				url: '',
+				style: ''
 			},
 			rules: {
 				title: [
@@ -69,9 +75,25 @@ export default {
 		},
 
 		submitForm (name) {
-			this.form.submited.user = this.$store.getters['login/currentUser']
-			this.form.token = this.$store.getters['login/getToken']
-			this.axios.post(api.routes.users, this.form)
+			const song = {
+				infos: {
+					title: this.form.title,
+					artist: this.form.artist
+				},
+				meta: {
+					url: this.form.url,
+					style: this.form.style
+				},
+				submited: {
+					user: this.$store.getters['login/currentUser']
+				}
+			}
+
+			const headers = {
+				Authorization: `Bearer ${this.$store.getters['login/getToken']}`
+			}
+
+			this.axios.post(api.routes.songs, song, headers)
 				.then(response => {
 					this.$store.dispatch('songs/add', response.data)
 					this.$Message.success('Enregistrement terminé')
