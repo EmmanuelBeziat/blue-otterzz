@@ -2,26 +2,26 @@
 	<Card class="login-card">
 		<h2 slot="title"><Icon type="md-key" /> S’enregistrer</h2>
 
-		<Form :model="form" ref="userCreate" :rules="rules">
-			<FormItem prop="username">
+		<Form :model="form" ref="userCreate" :rules="rules" class="no-label">
+			<FormItem prop="username" label="Nom d’utilisateur">
 				<i-input type="text" v-model="form.username" placeholder="Nom d’utilisateur">
 					<Icon type="md-person" slot="prepend" />
 				</i-input>
 			</FormItem>
 
-			<FormItem prop="email">
+			<FormItem prop="email" label="E-mail">
 				<i-input type="email" v-model="form.email" placeholder="E-mail">
 					<Icon type="md-mail" slot="prepend" />
 				</i-input>
 			</FormItem>
 
-			<FormItem prop="password">
+			<FormItem prop="password" label="Mot de passe">
 				<i-input type="password" v-model="form.password" placeholder="Mot de passe">
 					<Icon type="md-lock" slot="prepend" />
 				</i-input>
 			</FormItem>
 
-			<FormItem prop="passwordCheck">
+			<FormItem prop="passwordCheck" label="Confirmer le mot de passe">
 				<i-input type="password" v-model="form.passwordCheck" placeholder="Confirmer le mot de passe">
 					<Icon type="md-lock" slot="prepend" />
 				</i-input>

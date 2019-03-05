@@ -37,3 +37,23 @@ label.ivu-btn
 
 .ivu-divider.ivu-divider-with-text
 	margin 2rem 0 !important
+
+.ivu-btn-long
+	display block
+
+.ivu-btn-long + .ivu-btn-long
+	margin-top 1em
+
+.ivu-form.no-label .ivu-form-item-label
+	position absolute
+	width 1px
+	height 1px
+	visibility hidden
+	overflow hidden
+	clip rect(0, 0, 0, 0)
+	padding 0
+	font-size 0
+	line-height 0
+
+	&::before
+		content none

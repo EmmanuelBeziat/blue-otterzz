@@ -2,14 +2,14 @@
 	<Card class="login-card">
 		<h2 slot="title"><Icon type="md-log-in" /> Se connecter</h2>
 
-		<Form :model="form" ref="userLogin" :rules="rules">
-			<FormItem prop="username">
+		<Form :model="form" ref="userLogin" :rules="rules" class="no-label">
+			<FormItem prop="username" label="Nom d’utilisateur">
 				<i-input type="text" v-model="form.username" placeholder="Nom d’utilisateur">
 					<Icon type="md-person" slot="prepend" />
 				</i-input>
 			</FormItem>
 
-			<FormItem prop="password">
+			<FormItem prop="password" label="Mot de passe">
 				<i-input type="text" v-model="form.password" placeholder="Mot de passe">
 					<Icon type="md-lock" slot="prepend" />
 				</i-input>

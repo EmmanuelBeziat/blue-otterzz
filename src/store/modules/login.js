@@ -6,6 +6,8 @@ const state = {
 
 // Getters
 const getters = {
+	currentUser: state => state.logged,
+	getToken: state => state.token,
 	isLogged: state => state.logged ? true : false,
 }
 

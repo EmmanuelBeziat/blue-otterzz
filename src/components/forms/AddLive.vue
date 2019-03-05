@@ -1,31 +1,25 @@
 <template>
-	<Modal @on-ok="$emit('add-song')" :value="modal">
-		<h2 slot="header"><Icon type="md-musical-notes" /> Ajouter une musique</h2>
+	<Form :model="form" ref="addSong" :rules="rules">
+		<FormItem prop="title">
+			<i-input type="text" v-model="form.infos.title" placeholder="Titre" />
+		</FormItem>
 
-		<Form :model="form" ref="addSong" :rules="rules">
-			<FormItem prop="title">
-				<i-input type="text" v-model="form.infos.title" placeholder="Titre" />
-			</FormItem>
+		<FormItem prop="artist">
+			<AutoComplete v-model="form.infos.artist" placeholder="Artiste" :data="artists" :filter-method="filterMethod" />
+		</FormItem>
 
-			<FormItem prop="artist">
-				<AutoComplete v-model="form.infos.artist" placeholder="Artiste" :data="artists" :filter-method="filterMethod" />
-			</FormItem>
-
-			<FormItem prop="url">
-				<i-input type="text" v-model="form.meta.url" placeholder="URL de la musique (YouTube, Spotify, Vimeo, Deezer…)" />
-			</FormItem>
-		</Form>
-	</Modal>
+		<FormItem prop="url">
+			<i-input type="text" v-model="form.meta.url" placeholder="URL de la musique (YouTube, Spotify, Vimeo, Deezer…)" />
+		</FormItem>
+	</Form>
 </template>
 
 <script>
 export default {
-	name: 'AddSong',
-	props: ['modal'],
+	name: 'AddLive',
 
 	data () {
 		return {
-			loading: false,
 			form: {
 				infos: {
 					title: '',
