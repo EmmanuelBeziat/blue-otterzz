@@ -10,7 +10,7 @@
 			</FormItem>
 
 			<FormItem prop="password" label="Mot de passe">
-				<i-input type="text" v-model="form.password" placeholder="Mot de passe">
+				<i-input type="password" v-model="form.password" placeholder="Mot de passe">
 					<Icon type="md-lock" slot="prepend" />
 				</i-input>
 			</FormItem>
