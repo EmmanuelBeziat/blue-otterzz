@@ -31,13 +31,34 @@
 
 			<FormItem prop="instruments">
 				<CheckboxGroup v-model="form.instruments">
-					<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': form.instruments.includes('sing') }" label="sing">Chant</Checkbox>
-					<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': form.instruments.includes('guitar') }" label="guitar">Guitare</Checkbox>
-					<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': form.instruments.includes('bass') }" label="bass">Basse</Checkbox>
-					<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': form.instruments.includes('drums') }" label="drums">Batterie</Checkbox>
-					<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': form.instruments.includes('keyboard') }" label="keyboard">Piano / Claviers</Checkbox>
-					<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': form.instruments.includes('dj') }" label="dj">DJ / Platines</Checkbox>
-					<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': form.instruments.includes('other') }" label="other">Autre</Checkbox>
+					<Checkbox class="ivu-btn ivu-btn-default no-checkbox" :class="{ 'ivu-btn-primary': form.instruments.includes('sing') }" label="sing">
+						<Icon type="md-microphone" size="24" />
+						<span class="sr-only">Chant</span>
+					</Checkbox>
+					<Checkbox class="ivu-btn ivu-btn-default no-checkbox" :class="{ 'ivu-btn-primary': form.instruments.includes('guitar') }" label="guitar">
+						<Icon custom="icon-guitar-jackson" size="24" />
+						<span class="sr-only">Guitare</span>
+					</Checkbox>
+					<Checkbox class="ivu-btn ivu-btn-default no-checkbox" :class="{ 'ivu-btn-primary': form.instruments.includes('bass') }" label="bass">
+						<Icon custom="icon-bass" size="24" />
+						<span class="sr-only">Basse</span>
+					</Checkbox>
+					<Checkbox class="ivu-btn ivu-btn-default no-checkbox" :class="{ 'ivu-btn-primary': form.instruments.includes('drums') }" label="drums">
+						<Icon custom="icon-drums" size="24" />
+						<span class="sr-only">Batterie</span>
+					</Checkbox>
+					<Checkbox class="ivu-btn ivu-btn-default no-checkbox" :class="{ 'ivu-btn-primary': form.instruments.includes('keyboard') }" label="keyboard">
+						<Icon custom="icon-piano" size="24" />
+						<span class="sr-only">Piano / Claviers</span>
+					</Checkbox>
+					<Checkbox class="ivu-btn ivu-btn-default no-checkbox" :class="{ 'ivu-btn-primary': form.instruments.includes('dj') }" label="dj">
+						<Icon custom="icon-dj" size="24" />
+						<span class="sr-only">DJ / Machines</span>
+					</Checkbox>
+					<Checkbox class="ivu-btn ivu-btn-default no-checkbox" :class="{ 'ivu-btn-primary': form.instruments.includes('other') }" label="other">
+						<Icon type="ios-more" size="24" />
+						<span class="sr-only">Autres</span>
+					</Checkbox>
 				</CheckboxGroup>
 			</FormItem>
 
@@ -138,3 +159,12 @@ h2 .ivu-icon
 	vertical-align text-top
 </style>
 
+
+<style lang="stylus">
+.ivu-checkbox-group
+	display flex
+
+.no-checkbox.ivu-btn
+	padding .5em 1em
+	flex 1
+</style>

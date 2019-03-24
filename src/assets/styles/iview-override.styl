@@ -57,3 +57,19 @@ label.ivu-btn
 
 	&::before
 		content none
+
+.no-checkbox
+	&.ivu-btn
+		padding .5em 1em
+		width 50px
+
+		& > .ivu-icon + span
+		& > span + .ivu-icon
+			margin-left 0 !important
+
+	.ivu-checkbox
+		position absolute
+		width 1px
+		height 1px
+		clip rect(0, 0, 0, 0)
+		overflow hidden

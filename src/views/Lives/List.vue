@@ -69,3 +69,10 @@ export default {
 	}
 }
 </script>
+
+<style lang="stylus" scoped>
+.dashboard
+	overflow-x auto
+	.lives
+		min-width 800px
+</style>

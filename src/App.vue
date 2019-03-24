@@ -31,6 +31,7 @@ export default {
 	--color-white #fff
 	--color-light-grey rgba(255, 255, 255, .7)
 	--color-grey rgba(0, 0, 0, .15)
+	--color-nav #515a6e
 
 .site
 	min-height 100vh
@@ -42,6 +43,7 @@ export default {
 
 .main
 	padding 1rem
+	max-width 100vw
 	flex 1
 
 @require '~@/assets/styles/helpers.styl'

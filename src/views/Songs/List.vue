@@ -86,6 +86,11 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.dashboard
+	overflow-x auto
+	.songs
+		min-width 1200px
+
 .loader
 	display flex
 	padding 2rem

@@ -21,7 +21,7 @@
 				</Drawer>
 			</template>
 
-			<button class="login-btn login-item" @click="$store.dispatch('login/logOut')"><Icon type="md-log-out" size="24" /> Déconnexion</button>
+			<button class="login-btn login-item" @click="$store.dispatch('login/logOut');$router.push('/songs')"><Icon type="md-log-out" size="24" /> Déconnexion</button>
 		</template>
 
 		<router-link v-else class="login-item" :to="{ name: 'login' }"><Icon type="md-log-in" size="24" /> Se connecter</router-link>
@@ -54,7 +54,6 @@ export default {
 
 	methods: {
 		submitSong (song) {
-			console.log(song)
 			this.axios.post(api.routes.songs, song)
 				.then(response => {
 					this.$store.dispatch('songs/add', response.data)
@@ -119,5 +118,9 @@ export default {
 
 	&:hover
 		color var(--color-white)
+
+.login-btn.login-item
+	@media (max-width 767px)
+		line-height 40px
 </style>
 

@@ -33,13 +33,34 @@
 
 				<FormItem prop="instruments">
 					<CheckboxGroup v-model="form.instruments">
-						<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': form.instruments.includes('sing') }" label="sing">Chant</Checkbox>
-						<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': form.instruments.includes('guitar') }" label="guitar">Guitare</Checkbox>
-						<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': form.instruments.includes('bass') }" label="bass">Basse</Checkbox>
-						<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': form.instruments.includes('drums') }" label="drums">Batterie</Checkbox>
-						<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': form.instruments.includes('keyboard') }" label="keyboard">Piano / Claviers</Checkbox>
-						<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': form.instruments.includes('dj') }" label="dj">DJ / Platines</Checkbox>
-						<Checkbox class="ivu-btn ivu-btn-default" :class="{ 'ivu-btn-primary': form.instruments.includes('other') }" label="other">Autre</Checkbox>
+						<Checkbox class="ivu-btn ivu-btn-default no-checkbox" :value="form.instruments['sing']" :class="{ 'ivu-btn-primary': form.instruments.includes('sing') }" label="sing">
+							<Icon type="md-microphone" size="24" />
+							<span class="sr-only">Chant</span>
+						</Checkbox>
+						<Checkbox class="ivu-btn ivu-btn-default no-checkbox" :value="form.instruments['guitar']" :class="{ 'ivu-btn-primary': form.instruments.includes('guitar') }" label="guitar">
+							<Icon custom="icon-guitar-jackson" size="24" />
+							<span class="sr-only">Guitare</span>
+						</Checkbox>
+						<Checkbox class="ivu-btn ivu-btn-default no-checkbox" :value="form.instruments['bass']" :class="{ 'ivu-btn-primary': form.instruments.includes('bass') }" label="bass">
+							<Icon custom="icon-bass" size="24" />
+							<span class="sr-only">Basse</span>
+						</Checkbox>
+						<Checkbox class="ivu-btn ivu-btn-default no-checkbox" :value="form.instruments['drums']" :class="{ 'ivu-btn-primary': form.instruments.includes('drums') }" label="drums">
+							<Icon custom="icon-drums" size="24" />
+							<span class="sr-only">Batterie</span>
+						</Checkbox>
+						<Checkbox class="ivu-btn ivu-btn-default no-checkbox" :value="form.instruments['keyboard']" :class="{ 'ivu-btn-primary': form.instruments.includes('keyboard') }" label="keyboard">
+							<Icon custom="icon-piano" size="24" />
+							<span class="sr-only">Piano / Claviers</span>
+						</Checkbox>
+						<Checkbox class="ivu-btn ivu-btn-default no-checkbox" :value="form.instruments['dj']" :class="{ 'ivu-btn-primary': form.instruments.includes('dj') }" label="dj">
+							<Icon custom="icon-dj" size="24" />
+							<span class="sr-only">DJ / Machines</span>
+						</Checkbox>
+						<Checkbox class="ivu-btn ivu-btn-default no-checkbox" :value="form.instruments['other']" :class="{ 'ivu-btn-primary': form.instruments.includes('other') }" label="other">
+							<Icon type="ios-more" size="24" />
+							<span class="sr-only">Autres</span>
+						</Checkbox>
 					</CheckboxGroup>
 				</FormItem>
 
@@ -68,12 +89,17 @@
 				</FormItem>
 			</Form>
 		</template>
+
+		<Spin size="large" fix v-if="loading" />
 	</div>
 </template>
 
 <script>
+// import compare from '@/plugins/mixins/compare.js'
+
 export default {
 	name: 'UserEdit',
+	// mixins: [compare],
 
 	data () {
 		const validatePassCheck = (rule, value, callback) => {
@@ -86,6 +112,7 @@ export default {
 		}
 
 		return {
+			loading: false,
 			rules: {
 				username: [
 					{ required: true, message: 'Choisir votre nom d’utilisateur', trigger: 'blur' },
@@ -94,15 +121,15 @@ export default {
 					{ required: true, message: 'Choisir une adresse e-mail valide', trigger: 'blur' },
 					{ type: 'email', message: 'Format d’e-mail incorrect', trigger: 'blur' }
 				],
-				newPassword: [
-					{ required: true, message: 'Entrer un mot de passe', trigger: 'blur' },
+				password: [
+					// { required: true, message: 'Entrer un mot de passe', trigger: 'blur' },
 				],
 				newPassword: [
-					{ required: true, message: 'Choisir un mot de passe', trigger: 'blur' },
+					// { required: true, message: 'Choisir un mot de passe', trigger: 'blur' },
 					{ type: 'string', min: 6, message: 'Le mot de passe doit être composé de six caractères minimum', trigger: 'blur' }
 				],
 				newPasswordCheck: [
-					{ required: true, message: 'Confirmer le mot de passe', triger: 'blur' },
+					// { required: true, message: 'Confirmer le mot de passe', triger: 'blur' },
 					{ validator: validatePassCheck, trigger: 'blur' }
 				]
 			}
@@ -129,7 +156,51 @@ export default {
 	},
 
 	methods: {
+		toggleInstruments (value) {
+			const index = this.form.instruments.indexOf(value)
+			if (index === -1) {
+				this.form.instruments.push(value)
+			}
+			else {
+				this.form.instruments.splice(index, 1)
+			}
+		},
+
+		compare (oldUser, newUser) {
+			let newValues = {}
+			if (this.user.username !== this.form.username) newValues.username = this.form.username
+			if (this.user.email !== this.form.email) newValues.email = this.form.email
+			if (this.user.bio !== this.form.bio) newValues.bio = this.form.bio
+			if (JSON.stringify(this.user.instruments) !== JSON.stringify(this.form.instruments)) newValues.instruments = this.form.instruments
+			return newValues
+		},
+
+		submitForm () {
+			const user = this.compare(this.referenceUser, this.form)
+			console.log(user)
+
+			/* this.axios.put(api.routes.users, user)
+				.then(response => {
+					this.$store.dispatch('users/add', response.data)
+					this.$Message.success('Enregistrement terminé')
+					setTimeout(() => {
+						this.$router.push('/login')
+					}, 1000)
+				})
+				.catch(error => this.$Message.error('Erreur : ' + error.message))
+				.then(() => this.loading = false) */
+		},
+
 		handleSubmit (name) {
+			this.$refs[name].validate(valid => {
+				if (valid) {
+					this.loading = true
+					this.submitForm()
+				}
+				else {
+					this.$Message.error('Le formulaire est incomplet')
+				}
+			})
 		}
 	},
 }

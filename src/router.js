@@ -51,9 +51,13 @@ export default new Router({
 			component: User,
 		},
 		{
-			path: '/users/edit',
+			path: '/users/:slug/edit',
 			name: 'user-edit',
 			component: UserEdit,
+			beforeEnter: (to, from, next) => {
+				const isLogged = window.localStorage.getItem('blue-otterzz-login')
+				isLogged && JSON.parse(isLogged.name !== '') ? next() :	next('/users')
+			}
 		},
 		{
 			path: '/login',

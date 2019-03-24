@@ -43,15 +43,27 @@ export default {
 	color var(--color-white)
 	line-height 60px
 	padding .625rem 1rem
+	@media (max-width 767px)
+		line-height 40px
 
 	img
 		vertical-align middle
 		height 56px
+		@media (max-width 767px)
+			height 48px
 
 .menu
 	display flex
 	justify-content center
 	padding 0 1rem
+
+	@media (max-width 767px)
+		background var(--color-nav)
+		position fixed
+		bottom 0
+		left 0
+		right 0
+		z-index 50
 
 .menu-item
 	padding 0 1em
@@ -63,9 +75,18 @@ export default {
 	margin-left 1em
 	position relative
 
+	@media (max-width 767px)
+		margin 0 1rem
+		font-size 0
+
 	i
 		margin-right 6px
 		font-size 1.25em
+
+		@media (max-width 767px)
+			font-size 2rem
+			margin-right 0
+			margin-bottom 15px
 
 	&:hover
 		color var(--color-white)
