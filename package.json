@@ -13,6 +13,7 @@
 	},
 	"dependencies": {
 		"axios": "^0.18.0",
+		"cls-bluebird": "^2.1.0",
 		"date-fns": "^2.0.0-alpha.27",
 		"get-audio-id": "^1.1.1",
 		"get-video-id": "^3.1.1",

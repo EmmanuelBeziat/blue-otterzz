@@ -9,6 +9,10 @@ export const api = {
 		lives: '/lives',
 		users: '/users',
 		login: '/login'
+	},
+	onedrive: {
+		appId: 'c12c0def-7f07-4b7a-a975-75730f956787',
+		password: 'xikvgsUJX30|%zSOJG456^='
 	}
 }
 

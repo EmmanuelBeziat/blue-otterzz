@@ -57,6 +57,7 @@ export default {
 		songs () {
 			return this.$store.getters['songs/list'].map(key => {
 				return {
+					slug: key.slug,
 					artist: key.infos.artist,
 					title: key.infos.title,
 					score: this.getScore(key.score),
