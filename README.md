@@ -1,2 +1,1 @@
-# project-manager
-Just a tiny webapp to manage projects with files and stuff.
+![Blue Otterzz](public/logo-blue-512.png)
