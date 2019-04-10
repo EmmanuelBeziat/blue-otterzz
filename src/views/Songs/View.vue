@@ -27,7 +27,6 @@ import { api } from '@/config'
 import IframePlayer from '@/components/player/Iframe'
 import FilesList from '@/components/files/FilesList'
 import getUserName from '@/plugins/mixins/getUserName'
-import oneDriveAPI from 'onedrive-api'
 
 export default {
 	name: 'Song',
@@ -60,15 +59,6 @@ export default {
 
 	methods: {
 		getFiles () {
-			oneDriveAPI.items.listChildren({
-				accessToken: api.onedrive.appId,
-				itemID: 'root/Blue-Otterzz',
-				user: 'emm_beziat@hotmail.com'
-			})
-				.then(files => {
-					console.log(files)
-				})
-				.catch(error => console.log(error))
 		}
 	}
 }
