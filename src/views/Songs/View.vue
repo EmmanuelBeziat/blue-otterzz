@@ -6,6 +6,11 @@
 
 			<IframePlayer class="iframe-content" :source="song.meta.url" />
 
+			<section class="notes">
+				<Divider><h1>Notes</h1></Divider>
+				<p>À venir</p>
+			</section>
+
 			<section class="files">
 				<Divider><h1>Fichiers</h1></Divider>
 
@@ -52,15 +57,6 @@ export default {
 		IframePlayer,
 		FilesList
 	},
-
-	created () {
-		this.getFiles()
-	},
-
-	methods: {
-		getFiles () {
-		}
-	}
 }
 </script>
 

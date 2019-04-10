@@ -29,7 +29,7 @@
 					</i-switch>
 				</FormItem>
 
-				<Divider>Vos instruments</Divider>
+				<!-- <Divider>Vos instruments</Divider>
 
 				<FormItem prop="instruments">
 					<CheckboxGroup v-model="form.instruments">
@@ -62,7 +62,7 @@
 							<span class="sr-only">Autres</span>
 						</Checkbox>
 					</CheckboxGroup>
-				</FormItem>
+				</FormItem> -->
 
 				<Divider>Changer de mot de passe</Divider>
 
@@ -177,9 +177,8 @@ export default {
 
 		submitForm () {
 			const user = this.compare(this.referenceUser, this.form)
-			console.log(user)
 
-			/* this.axios.put(api.routes.users, user)
+			this.axios.put(api.routes.users, user)
 				.then(response => {
 					this.$store.dispatch('users/add', response.data)
 					this.$Message.success('Enregistrement terminé')
@@ -188,7 +187,7 @@ export default {
 					}, 1000)
 				})
 				.catch(error => this.$Message.error('Erreur : ' + error.message))
-				.then(() => this.loading = false) */
+				.then(() => this.loading = false)
 		},
 
 		handleSubmit (name) {

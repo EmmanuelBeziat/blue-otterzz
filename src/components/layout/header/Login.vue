@@ -21,6 +21,7 @@
 				</Drawer>
 			</template>
 
+			<button class="login-btn login-item" @click="$router.push(`/users/${currentUser}/edit`)"><Icon type="md-person" size="24" /> Mon profil</button>
 			<button class="login-btn login-item" @click="$store.dispatch('login/logOut');$router.push('/songs')"><Icon type="md-log-out" size="24" /> Déconnexion</button>
 		</template>
 
@@ -44,6 +45,12 @@ export default {
 		return {
 			drawerSong: false,
 			drawerLive: false
+		}
+	},
+
+	computed: {
+		currentUser () {
+			return this.$store.getters['login/currentUser']
 		}
 	},
 

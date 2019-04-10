@@ -8,15 +8,15 @@
 				<template slot-scope="{ row }" slot="url"><ModalPlayer :source="row.url" /></template>
 				<template slot-scope="{ row }" slot="files">
 					<Tooltip content="Tablature" placement="top">
-						<a v-if="row.files.sheets.length" class="file-download" :href="row.files.sheets[row.files.sheet.length - 1].file"><Icon size="24" custom="icon-pick" /></a>
+						<a v-if="row.files.sheets.length" class="file-download" :href="downloadFile(row.slug, row.files.sheets[row.files.sheets.length - 1].file)"><Icon size="24" custom="icon-pick" /></a>
 						<span v-else class="file-download"><Icon size="24" custom="icon-pick" /></span>
 					</Tooltip>
 					<Tooltip content="Paroles" placement="top">
-						<a v-if="row.files.lyrics.length" class="file-download" :href="row.files.lyrics[row.files.lyrics.length - 1].file"><Icon size="24" type="md-microphone" /></a>
+						<a v-if="row.files.lyrics.length" class="file-download" :href="downloadFile(row.slug, row.files.lyrics[row.files.lyrics.length - 1].file)"><Icon size="24" type="md-microphone" /></a>
 						<span v-else class="file-download"><Icon size="24" type="md-microphone" /></span>
 					</Tooltip>
 					<Tooltip content="Backtrack" placement="top">
-						<a v-if="row.files.backtracks.length" class="file-download" :href="row.files.backtracks[row.files.backtrack.length - 1].file"><Icon size="24" type="md-laptop" /></a>
+						<a v-if="row.files.backtracks.length" class="file-download" :href="downloadFile(row.slug, row.files.backtracks[row.files.backtracks.length - 1].file)"><Icon size="24" type="md-laptop" /></a>
 						<span v-else class="file-download"><Icon size="24" type="md-laptop" /></span>
 					</Tooltip>
 				</template>
@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import { api } from '@/config'
 import ModalPlayer from '@/components/player/Modal'
 import getUserName from '@/plugins/mixins/getUserName'
 
@@ -81,6 +82,15 @@ export default {
 		 */
 		getScore (values) {
 			return values.reduce((accumulator, value) => accumulator + value.value, 0) / values.length
+		},
+
+		/**
+		 * Get the url to download a file
+		 * @param slug { String } Song slug
+		 * @param file { String } File name
+		 */
+		downloadFile (slug, file) {
+			return `${api.files}/${slug}/${file}`
 		},
 	}
 }
