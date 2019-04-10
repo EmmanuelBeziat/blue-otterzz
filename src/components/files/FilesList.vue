@@ -36,9 +36,6 @@ export default {
 		 * Get the url to download a file
 		 * @param file { String } File name
 		 */
-		downloadFile (file, slug) {
-			return `${api.files}/${slug}/${file}`
-		},
 		downloadFile (file) {
 			return `${api.files}/${this.$route.params.slug}/${file}`
 		},
